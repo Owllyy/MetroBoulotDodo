@@ -7,7 +7,7 @@ var minSheepSpeed : int = 20
 
 func _ready() -> void:
 	random.randomize()
-	start(3)
+	start(GameManager.getDayCount())
 
 func start(iteration: int):
 	var sheepsToSpawn = iteration * 3
