@@ -57,7 +57,7 @@ a = Vector2(125, 292)
 b = Vector2(246, 106)
 
 [sub_resource type="Curve" id="Curve_dy05f"]
-_data = [Vector2(0, 0.303371), 0.0, 0.0, 0, 0, Vector2(0.0903226, 0.426966), 0.0435393, 0.0435393, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.303371), 0.0, 0.0, 0, 0, Vector2(0.0903226, 0.426966), 0.0435393, 0.0435393, 0, 0, Vector2(1, 0.730337), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [node name="Dodo" type="Node2D"]
