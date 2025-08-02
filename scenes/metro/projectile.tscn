@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxcx1girur5ri"]
+
+[ext_resource type="Script" uid="uid://dr6tnmp30c4eb" path="res://scripts/metro/projectile.gd" id="1_jdar4"]
+
+[node name="Projectile" type="Node2D"]
+script = ExtResource("1_jdar4")

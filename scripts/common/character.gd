@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+
+@export var hurt_sound : AudioStreamPlayer2D
+
 @export var BASE_SPEED : float = 500
 @export var SPRINT_SPEED : float = 700.0
 @export var BASE_STAMINA : int = 200
@@ -38,13 +41,33 @@ func _physics_process(delta: float):
 		external_force = Vector2.ZERO
 	
 func take_damage():
+	hurt_sound.play()
 	if life > 1:
 		life -= 1
+		return 0
 	else:
-		death()
+		return 1
 		
 func death():
 	print_debug("You died")
 
 func apply_force(force: Vector2) -> void:
 	external_force += force
+	
+var blink_tween: Tween
+func start_blink_effect():
+	if blink_tween:
+		blink_tween.kill()
+
+	blink_tween = create_tween().set_loops()
+	var sprite = $Sprite2D 
+	blink_tween.tween_property(sprite, "modulate:a", 0.2, 0.1)
+	blink_tween.chain().tween_property(sprite, "modulate:a", 1.0, 0.1)
+
+func stop_blink_effect():
+	if blink_tween:
+		blink_tween.kill()
+		blink_tween = null
+	
+	var sprite = $Sprite2D
+	sprite.modulate.a = 1.0

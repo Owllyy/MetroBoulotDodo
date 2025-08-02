@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://b73vwuiajjkax"]
+[gd_scene load_steps=5 format=3 uid="uid://b73vwuiajjkax"]
 
 [ext_resource type="Script" uid="uid://da7iht40bgwhp" path="res://scripts/common/character.gd" id="1_jlk85"]
 [ext_resource type="Texture2D" uid="uid://hpyqsnkeypdl" path="res://icon.svg" id="2_6ogmm"]
+[ext_resource type="AudioStream" uid="uid://cmcc0rsvuenfr" path="res://assets/metro/sound/hurt.wav" id="3_6ogmm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_04cgv"]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("hurt_sound")]
+collision_mask = 7
 script = ExtResource("1_jlk85")
+hurt_sound = NodePath("HurtSound")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_04cgv")
@@ -17,3 +20,6 @@ zoom = Vector2(0.5, 0.5)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_6ogmm")
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_6ogmm")
