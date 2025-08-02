@@ -1,10 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://drqs50e5wny8e"]
+[gd_scene load_steps=4 format=3 uid="uid://drqs50e5wny8e"]
 
 [ext_resource type="Script" uid="uid://cgdc7cx1ncbge" path="res://scripts/GameManager.gd" id="1_sa783"]
 [ext_resource type="PackedScene" uid="uid://d3xvbx7rc0157" path="res://scenes/metro/metro.tscn" id="3_emu0y"]
-[ext_resource type="PackedScene" uid="uid://cf7sqmfjnnv4g" path="res://scenes/boulot/boulot.tscn" id="4_ubqw2"]
 [ext_resource type="PackedScene" uid="uid://gcmy85wqs0x1" path="res://scenes/dodo/dodo.tscn" id="5_emu0y"]
 
 [node name="Persistent" type="Node"]
 script = ExtResource("1_sa783")
-stagesPerDay = Array[PackedScene]([ExtResource("3_emu0y"), ExtResource("4_ubqw2"), ExtResource("5_emu0y")])
+stagesPerDay = Array[PackedScene]([ExtResource("3_emu0y"), ExtResource("5_emu0y")])

@@ -27,7 +27,6 @@ func createDetectionArea(points: PackedVector2Array):
 	add_child(detectionArea)
 	
 	detectionArea.body_entered.connect(_on_body_entered)
-	detectionArea.area_entered.connect(_on_area_entered)
 
 func flashPolygon():
 	var tween = create_tween()
@@ -38,12 +37,8 @@ func flashPolygon():
 	tween.tween_callback(cleanupPolygon).set_delay(0.1)
 
 func _on_body_entered(body):
-	print("Body inside polygon: ", body.name)
 	if body.is_in_group("sheep"):
 		body.queue_free()
-
-func _on_area_entered(area):
-	print("Area inside polygon: ", area.name)
 
 func cleanupPolygon():
 	queue_free()  # This removes the entire PolygonLoop node

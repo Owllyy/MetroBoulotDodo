@@ -52,7 +52,6 @@ func checkSheepCollisionWithTrail(threshold: float = 5.0):
 		var index = is_sheep_touching_trail(sheep, threshold)
 		if index > 0:
 			line.points = line.points.slice(index)
-			print("Sheep hit the trail!")
 
 func is_sheep_touching_trail(sheep_node, threshold: float) -> int:
 	var sheep_collision = null
