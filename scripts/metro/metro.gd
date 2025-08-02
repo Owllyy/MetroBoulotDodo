@@ -7,6 +7,8 @@ extends Node
 
 @onready var event_timer: Timer = $Timer
 
+var force = Vector2.ZERO
+
 func _on_timeout() -> void:
 	do_event()
 
@@ -40,12 +42,15 @@ func do_event():
 
 func metro_right():
 	arrow_right.visible = true
+	force = Vector2(2000, 0)
 	
 func metro_left():
 	arrow_left.visible = true
+	force = Vector2(-2000, 0)
 	
 func metro_stop():
 	stop.visible = true
+	force = Vector2(0, 2000)
 
 func _ready():
 	init_event_list()
@@ -55,4 +60,5 @@ func _ready():
 	event_timer.one_shot = false
 	event_timer.start(3);
 	
-	
+func _physics_process(delta: float) -> void:
+	character.apply_force(force * delta)
