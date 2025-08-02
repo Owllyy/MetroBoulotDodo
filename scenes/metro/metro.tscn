@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3xvbx7rc0157"]
+[gd_scene load_steps=12 format=3 uid="uid://d3xvbx7rc0157"]
 
 [ext_resource type="Texture2D" uid="uid://dt28vyeroextc" path="res://assets/metro/wagon.png" id="1_fkkrw"]
 [ext_resource type="Script" uid="uid://c6xnha4tqygq2" path="res://scripts/metro/metro.gd" id="1_rnm2g"]
 [ext_resource type="PackedScene" uid="uid://b73vwuiajjkax" path="res://scenes/common/character.tscn" id="2_r7db7"]
-[ext_resource type="Texture2D" uid="uid://dgm52wfelf01x" path="res://assets/metro/arrow.png" id="4_oi6tm"]
-[ext_resource type="Texture2D" uid="uid://dok5rbkm4y31v" path="res://assets/metro/arrow_pressed.png" id="5_oi6tm"]
-[ext_resource type="AudioStream" uid="uid://c7hqgm4glahrb" path="res://assets/metro/ding.wav" id="6_yom83"]
-[ext_resource type="AudioStream" uid="uid://7uph8s0un2u1" path="res://assets/metro/door_open.wav" id="7_3b0xe"]
-[ext_resource type="AudioStream" uid="uid://bhahcfnxdaplv" path="res://assets/metro/door_close.wav" id="8_m6644"]
+[ext_resource type="Texture2D" uid="uid://dgm52wfelf01x" path="res://assets/metro/ui/arrow.png" id="4_oi6tm"]
+[ext_resource type="Texture2D" uid="uid://dok5rbkm4y31v" path="res://assets/metro/ui/arrow_pressed.png" id="5_oi6tm"]
+[ext_resource type="AudioStream" uid="uid://c7hqgm4glahrb" path="res://assets/metro/sound/ding.wav" id="6_yom83"]
+[ext_resource type="AudioStream" uid="uid://7uph8s0un2u1" path="res://assets/metro/sound/door_open.wav" id="7_3b0xe"]
+[ext_resource type="AudioStream" uid="uid://bgvn0e2twpjwe" path="res://assets/metro/sound/background.mp3" id="7_m6644"]
+[ext_resource type="AudioStream" uid="uid://bhahcfnxdaplv" path="res://assets/metro/sound/door_close.wav" id="8_m6644"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oi6tm"]
 radius = 169.012
@@ -114,6 +115,12 @@ stream = ExtResource("7_3b0xe")
 
 [node name="door_close" type="AudioStreamPlayer2D" parent="Sound"]
 stream = ExtResource("8_m6644")
+
+[node name="background" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("7_m6644")
+volume_db = -30.0
+pitch_scale = 1.25
+autoplay = true
 
 [node name="arrow_right" type="AnimatedSprite2D" parent="."]
 visible = false

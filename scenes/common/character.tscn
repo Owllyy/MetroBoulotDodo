@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://da7iht40bgwhp" path="res://scripts/common/character.gd" id="1_jlk85"]
 [ext_resource type="Texture2D" uid="uid://hpyqsnkeypdl" path="res://icon.svg" id="2_6ogmm"]
-[ext_resource type="AudioStream" uid="uid://cmcc0rsvuenfr" path="res://assets/metro/hurt.wav" id="3_6ogmm"]
+[ext_resource type="AudioStream" uid="uid://cmcc0rsvuenfr" path="res://assets/metro/sound/hurt.wav" id="3_6ogmm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_04cgv"]
 

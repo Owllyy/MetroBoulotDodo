@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://c7hqgm4glahrb"
-path="res://.godot/imported/ding.wav-3fd55882c72b90c1ce98f7471e7bea1a.sample"
+path="res://.godot/imported/ding.wav-db34248299fe91b100ba806f40ee7fb6.sample"
 
 [deps]
 
-source_file="res://assets/metro/ding.wav"
-dest_files=["res://.godot/imported/ding.wav-3fd55882c72b90c1ce98f7471e7bea1a.sample"]
+source_file="res://assets/metro/sound/ding.wav"
+dest_files=["res://.godot/imported/ding.wav-db34248299fe91b100ba806f40ee7fb6.sample"]
 
 [params]
 

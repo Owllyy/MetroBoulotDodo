@@ -134,14 +134,14 @@ func start_force_tween(direction: Vector2):
 		ACCELERATION_DURATION
 	).set_trans(Tween.TRANS_SINE)
 	current_tween.parallel().tween_property(
-	camera, "rotation_degrees", target_rotation, ACCELERATION_DURATION
+	wagon, "rotation_degrees", target_rotation, ACCELERATION_DURATION
 	).set_trans(Tween.TRANS_SINE)
 	current_tween.parallel().tween_property(camera, "offset", target_camera_offset, ACCELERATION_DURATION).set_trans(Tween.TRANS_SINE)
 	current_tween.chain().tween_property(
 		self, "force", Vector2.ZERO, DECELERATION_DURATION
 	).set_trans(Tween.TRANS_SINE)
 	current_tween.parallel().tween_property(
-		camera, "rotation_degrees", 0.0, DECELERATION_DURATION
+		wagon, "rotation_degrees", 0.0, DECELERATION_DURATION
 	).set_trans(Tween.TRANS_SINE)
 	current_tween.parallel().tween_property(camera, "offset", Vector2.ZERO, DECELERATION_DURATION).set_trans(Tween.TRANS_SINE)
 

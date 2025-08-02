@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://7uph8s0un2u1"
-path="res://.godot/imported/door_open.wav-61a60468a3bea03ec15eef7f6f1ea681.sample"
+uid="uid://cmcc0rsvuenfr"
+path="res://.godot/imported/hurt.wav-81772fa0f67c151d88a6bd163262840b.sample"
 
 [deps]
 
-source_file="res://assets/metro/door_open.wav"
-dest_files=["res://.godot/imported/door_open.wav-61a60468a3bea03ec15eef7f6f1ea681.sample"]
+source_file="res://assets/metro/sound/hurt.wav"
+dest_files=["res://.godot/imported/hurt.wav-81772fa0f67c151d88a6bd163262840b.sample"]
 
 [params]
 
