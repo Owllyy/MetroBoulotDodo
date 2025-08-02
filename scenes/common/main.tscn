@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://4kkpvhifi881"]
+[gd_scene load_steps=5 format=3 uid="uid://4kkpvhifi881"]
 
 [ext_resource type="Script" uid="uid://dc5170xyds48g" path="res://scripts/common/mainMenu.gd" id="1_1bltu"]
-[ext_resource type="Script" uid="uid://c24kp32umivxl" path="res://scripts/common/settings_button.gd" id="1_btn4e"]
 [ext_resource type="Theme" uid="uid://bpcln3x4i8if6" path="res://assets/common/mainMenu.tres" id="1_kuhtq"]
 [ext_resource type="Theme" uid="uid://dlukdkpy0mpss" path="res://assets/common/mainSettings.tres" id="2_c7yu4"]
 [ext_resource type="Script" uid="uid://bdl6rtb8waxmm" path="res://scripts/common/settings_menu.gd" id="3_hnixr"]
@@ -51,7 +50,6 @@ grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "SETTINGS"
-script = ExtResource("1_btn4e")
 
 [node name="SettingsMenu" type="Control" parent="."]
 visible = false
