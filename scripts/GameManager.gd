@@ -1,10 +1,19 @@
 extends Node
 
-@export var scenes : Dictionary[String, PackedScene] = {}
+@export var stagesPerDay : Array[PackedScene] = []
 
-func goToScene(sceneName: String):
-	var scene = scenes.get(sceneName);
-	if scene:
-		get_tree().change_scene_to_packed(scenes[sceneName])
+var currentDay = 0
+var currentStage = 0
+
+func goToNextStage():
+	assert(!stagesPerDay.is_empty(), "Must have at least one stage per day")
+	
+	if currentDay == 0:
+		++currentDay
 	else:
-		push_error(sceneName + ": unknown scene")
+		++currentStage
+		if currentStage % stagesPerDay.size() == 0:
+			++currentDay
+			currentStage = 0
+	
+	get_tree().change_scene_to_packed(stagesPerDay[currentStage])
