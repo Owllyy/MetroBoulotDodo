@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cf7sqmfjnnv4g"]
+[gd_scene load_steps=16 format=3 uid="uid://cf7sqmfjnnv4g"]
 
 [ext_resource type="PackedScene" uid="uid://b73vwuiajjkax" path="res://scenes/common/character.tscn" id="1_vsk8r"]
 [ext_resource type="Script" uid="uid://bssa0rn1tnlge" path="res://scenes/boulot/boulot.gd" id="1_wqw1y"]
@@ -29,13 +29,18 @@ size = Vector2(182, 315)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lssby"]
 size = Vector2(305, 180)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tualn"]
+size = Vector2(64, 364)
+
 [node name="Boulot" type="Node2D"]
 script = ExtResource("1_wqw1y")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_vsk8r")]
 disable_mode = 2
+collision_mask = 5
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("RectangleShape2D_wqw1y")
@@ -95,10 +100,9 @@ shape = SubResource("RectangleShape2D_iwto3")
 script = ExtResource("6_lssby")
 
 [node name="shoe_spawn_area" type="Area2D" parent="MiniGameTri"]
-position = Vector2(-745, 3)
+position = Vector2(-750, -140)
 
 [node name="area" type="CollisionShape2D" parent="MiniGameTri/shoe_spawn_area"]
-position = Vector2(0, -145.5)
 shape = SubResource("RectangleShape2D_dioeo")
 
 [node name="background" type="TextureRect" parent="MiniGameTri"]
@@ -132,6 +136,15 @@ shape = SubResource("RectangleShape2D_lssby")
 [node name="Timer" type="Timer" parent="MiniGameTri"]
 wait_time = 0.5
 
+[node name="shoe_despawn" type="Area2D" parent="MiniGameTri"]
+position = Vector2(750, -140)
+collision_layer = 2
+collision_mask = 2
+
+[node name="area" type="CollisionShape2D" parent="MiniGameTri/shoe_despawn"]
+position = Vector2(-40, 0)
+shape = SubResource("RectangleShape2D_tualn")
+
 [node name="test" type="Sprite2D" parent="."]
 position = Vector2(556, 254)
 scale = Vector2(195.5, 225.5)
@@ -140,3 +153,5 @@ texture = ExtResource("3_5k82q")
 [connection signal="body_entered" from="TriZone" to="CharacterBody2D/PlayerCollider" method="_on_tri_zone_body_entered"]
 [connection signal="body_exited" from="TriZone" to="CharacterBody2D/PlayerCollider" method="_on_tri_zone_body_exited"]
 [connection signal="timeout" from="MiniGameTri/Timer" to="MiniGameTri" method="_on_timer_timeout"]
+[connection signal="area_entered" from="MiniGameTri/shoe_despawn" to="MiniGameTri" method="_on_shoe_despawn_area_entered"]
+[connection signal="body_entered" from="MiniGameTri/shoe_despawn" to="MiniGameTri" method="_on_shoe_despawn_body_entered"]

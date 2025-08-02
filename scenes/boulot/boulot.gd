@@ -3,6 +3,9 @@ extends Node2D
 @onready var trigame = $MiniGameTri
 @onready var player = $CharacterBody2D
 
+var current_shoes = 0
+var quota = 5
+
 func _openclose_minigame(name : String):
 	if name == "trizone":
 		if trigame.is_visible_in_tree():

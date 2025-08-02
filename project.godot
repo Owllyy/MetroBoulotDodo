@@ -63,6 +63,10 @@ left_click={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_5="shoes"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
