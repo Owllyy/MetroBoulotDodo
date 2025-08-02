@@ -5,6 +5,10 @@ extends Node
 var currentDay = 0
 var currentStage = 0
 
+# start at 1
+func getDayCount() -> float:
+	return currentDay
+
 func goToNextStage():
 	assert(!stagesPerDay.is_empty(), "Must have at least one stage per day")
 	
