@@ -64,13 +64,17 @@ size_flags_vertical = 4
 script = ExtResource("3_hnixr")
 
 [node name="SettingsPopup" type="PanelContainer" parent="SettingsMenu"]
-custom_minimum_size = Vector2(400, 400)
+custom_minimum_size = Vector2(400, 380)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -190.0
+offset_right = 200.0
+offset_bottom = 190.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_kuhtq")
@@ -409,4 +413,20 @@ Rebz
 Simon Cros"
 horizontal_alignment = 1
 
+[node name="Control" type="Control" parent="SettingsMenu/SettingsPopup/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="CloseSettings" type="Button" parent="SettingsMenu/SettingsPopup/MarginContainer/Control"]
+layout_mode = 0
+offset_left = -40.0
+offset_top = -58.0
+offset_right = 10.0
+offset_bottom = -27.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Close"
+
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="SettingsMenu/SettingsPopup/MarginContainer/Control/CloseSettings" to="." method="_on_close_settings_pressed"]
