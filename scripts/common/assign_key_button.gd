@@ -33,7 +33,7 @@ func _input(event: InputEvent):
 func update_button_text():
 	var events = InputMap.action_get_events(action)
 	if events.size() > 0 and events[0] is InputEventKey:
-		# on keypad, name like Home, PageUp etc are used instead of the number
+		# on keypad, names like "Home", "PageUp", "Down" etc are used instead of the number
 		match events[0].physical_keycode:
 			KEY_KP_0:
 				text = "Kp 0"
