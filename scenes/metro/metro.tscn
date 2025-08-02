@@ -1,50 +1,153 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3xvbx7rc0157"]
+[gd_scene load_steps=11 format=3 uid="uid://d3xvbx7rc0157"]
 
 [ext_resource type="Texture2D" uid="uid://dt28vyeroextc" path="res://assets/metro/wagon.png" id="1_fkkrw"]
 [ext_resource type="Script" uid="uid://c6xnha4tqygq2" path="res://scripts/metro/metro.gd" id="1_rnm2g"]
 [ext_resource type="PackedScene" uid="uid://b73vwuiajjkax" path="res://scenes/common/character.tscn" id="2_r7db7"]
 [ext_resource type="Texture2D" uid="uid://dgm52wfelf01x" path="res://assets/metro/arrow.png" id="4_oi6tm"]
+[ext_resource type="Texture2D" uid="uid://dok5rbkm4y31v" path="res://assets/metro/arrow_pressed.png" id="5_oi6tm"]
+[ext_resource type="AudioStream" uid="uid://c7hqgm4glahrb" path="res://assets/metro/ding.wav" id="6_yom83"]
+[ext_resource type="AudioStream" uid="uid://7uph8s0un2u1" path="res://assets/metro/door_open.wav" id="7_3b0xe"]
+[ext_resource type="AudioStream" uid="uid://bhahcfnxdaplv" path="res://assets/metro/door_close.wav" id="8_m6644"]
 
-[node name="Metro" type="Node2D" node_paths=PackedStringArray("arrow_left", "arrow_right", "stop", "character")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_oi6tm"]
+radius = 169.012
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_062a6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_oi6tm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_oi6tm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Metro" type="Node2D" node_paths=PackedStringArray("wagon", "camera", "ding", "door_open", "door_close", "arrow_left", "arrow_right", "arrow_down", "arrow_up", "stop", "start", "character")]
 script = ExtResource("1_rnm2g")
+wagon = NodePath("wagon")
+camera = NodePath("Camera2D")
+ding = NodePath("Sound/ding")
+door_open = NodePath("Sound/door_open")
+door_close = NodePath("Sound/door_close")
 arrow_left = NodePath("arrow_left")
 arrow_right = NodePath("arrow_right")
+arrow_down = NodePath("arrow_down")
+arrow_up = NodePath("arrow_up")
 stop = NodePath("stop")
+start = NodePath("start")
 character = NodePath("CharacterBody2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.2, 1.2)
 
 [node name="Background" type="ColorRect" parent="."]
 offset_left = -697.0
 offset_top = -441.0
 offset_right = 726.0
-offset_bottom = 444.0
-color = Color(0, 0, 0, 1)
+offset_bottom = 1944.0
+color = Color(0.0687983, 0.0687983, 0.0687983, 1)
 
 [node name="wagon" type="Sprite2D" parent="."]
-position = Vector2(-1.02542, 2.97457)
-scale = Vector2(1.50401, 1.50401)
+position = Vector2(1, 9)
+scale = Vector2(1.6524, 1.63088)
 texture = ExtResource("1_fkkrw")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_r7db7")]
 BASE_SPEED = 400.0
 
-[node name="arrow_left" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-465, 0)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_oi6tm")
-
-[node name="arrow_right" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(473, 0)
-scale = Vector2(-0.5, 0.5)
-texture = ExtResource("4_oi6tm")
-
 [node name="stop" type="ColorRect" parent="."]
 visible = false
-offset_left = -70.0
-offset_top = -374.0
-offset_right = 74.0
-offset_bottom = -345.0
+offset_left = -73.0
+offset_top = -221.0
+offset_right = 71.0
+offset_bottom = -192.0
 color = Color(1, 0.09256, 0.0415727, 1)
+
+[node name="start" type="ColorRect" parent="."]
+visible = false
+offset_left = -73.0
+offset_top = -221.0
+offset_right = 71.0
+offset_bottom = -192.0
+color = Color(0.751551, 0.467117, 0.0930515, 1)
+
+[node name="game_space" type="Area2D" parent="."]
+
+[node name="collision_shape" type="CollisionShape2D" parent="game_space"]
+top_level = true
+shape = SubResource("CircleShape2D_oi6tm")
+
+[node name="wall" type="StaticBody2D" parent="."]
+visible = false
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="wall"]
+position = Vector2(-153, 129)
+polygon = PackedVector2Array(10, 1, -5, -16, -24, -47, -38, -89, -42, -128, -104, -129, -57, 43, 154, 128, 154, 69, 118, 62, 86, 53, 58, 40, 33, 24)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="wall"]
+position = Vector2(-127, -153)
+rotation = 1.5708
+polygon = PackedVector2Array(10, 1, -5, -16, -24, -47, -38, -89, -42, -128, -104, -129, -57, 43, 154, 128, 154, 69, 118, 62, 86, 53, 58, 40, 33, 24)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="wall"]
+position = Vector2(155, -126)
+rotation = 3.14159
+polygon = PackedVector2Array(10, 1, -5, -16, -24, -47, -38, -89, -42, -128, -104, -129, -57, 43, 154, 128, 154, 69, 118, 62, 86, 53, 58, 40, 33, 24)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="wall"]
+position = Vector2(128, 156)
+rotation = -1.5708
+polygon = PackedVector2Array(10, 1, -5, -16, -24, -47, -38, -89, -42, -128, -104, -129, -57, 43, 154, 128, 154, 69, 118, 62, 86, 53, 58, 40, 33, 24)
+
+[node name="Sound" type="Node2D" parent="."]
+
+[node name="ding" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("6_yom83")
+
+[node name="door_open" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("7_3b0xe")
+
+[node name="door_close" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("8_m6644")
+
+[node name="arrow_right" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(224, -1)
+rotation = 3.14159
+scale = Vector2(0.5, -0.5)
+sprite_frames = SubResource("SpriteFrames_062a6")
+frame_progress = 0.535918
+speed_scale = 0.7
+
+[node name="arrow_left" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-223, 1)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_062a6")
+frame_progress = 0.87986
+speed_scale = 0.7
+
+[node name="arrow_down" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(3, 218)
+rotation = -1.5708
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_062a6")
+frame_progress = 0.87986
+speed_scale = 0.7
+
+[node name="arrow_up" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-1, -223)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_062a6")
+frame_progress = 0.535918
+speed_scale = 0.7
+
+[connection signal="body_exited" from="game_space" to="." method="_on_game_space_body_exited"]
