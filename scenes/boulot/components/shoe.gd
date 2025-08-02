@@ -9,10 +9,18 @@ var is_inside_drop = false
 var color : int = 0
 
 func _process(delta: float) -> void:
-	pass
-	
+	if draggable:
+		if Input.is_action_pressed("left_click"):
+			sleeping = true
+			global_position = get_global_mouse_position()
+		if Input.is_action_just_released("left_click"):
+			sleeping = false
+			pass
+			
 func _on_mouse_entered() -> void:
-	scale = Vector2(2,2)
+	draggable = true
+	#scale = Vector2(2,2)
 
 func _on_mouse_exited() -> void:
-	scale = Vector2(1,1)
+	draggable = false
+	#scale = Vector2(1,1)

@@ -11,7 +11,7 @@ extends CharacterBody2D
 
 func _process(delta: float) -> void:
 	self.position = get_viewport().get_mouse_position()
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or Input.is_action_pressed("interact"):
 		mouseSprite.modulate = Color.BLACK
 		addPointsToLine()
 	else:
