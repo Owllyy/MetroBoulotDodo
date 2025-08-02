@@ -41,7 +41,6 @@ func _physics_process(delta: float):
 		velocity = velocity.lerp(Vector2.ZERO, FRICTION)
 
 	dashing -= delta * DASH_TIME
-	$Stamina.text = "Stamina: " + str(stamina)
 	move_and_slide()
 	
 func take_damage(damage: int):
