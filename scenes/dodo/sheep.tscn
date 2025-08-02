@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://e3miiu2pgoir"]
+
+[ext_resource type="Texture2D" uid="uid://jo4nj5nr34rk" path="res://assets/dodo/icon.svg" id="1_0mqg2"]
+[ext_resource type="Script" uid="uid://k413mijsha8v" path="res://scripts/dodo/sheep.gd" id="1_cql80"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqo72"]
+size = Vector2(50, 50)
+
+[node name="Sheep" type="CharacterBody2D"]
+script = ExtResource("1_cql80")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wqo72")
+
+[node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_0mqg2")
+
+[node name="Sheep" type="Node2D" parent="."]
