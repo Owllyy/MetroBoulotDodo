@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://4kkpvhifi881"]
+[gd_scene load_steps=6 format=3 uid="uid://4kkpvhifi881"]
 
 [ext_resource type="Script" uid="uid://dc5170xyds48g" path="res://scripts/common/mainMenu.gd" id="1_1bltu"]
 [ext_resource type="Theme" uid="uid://bpcln3x4i8if6" path="res://assets/common/mainMenu.tres" id="1_kuhtq"]
 [ext_resource type="Theme" uid="uid://dlukdkpy0mpss" path="res://assets/common/mainSettings.tres" id="2_c7yu4"]
 [ext_resource type="Script" uid="uid://bdl6rtb8waxmm" path="res://scripts/common/settings_menu.gd" id="3_hnixr"]
+[ext_resource type="Script" uid="uid://3gjsgqdeg42p" path="res://scripts/common/assign_key_button.gd" id="4_hnixr"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_1bltu")
@@ -52,7 +53,6 @@ size_flags_vertical = 4
 text = "SETTINGS"
 
 [node name="SettingsMenu" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -223,7 +223,7 @@ size_flags_horizontal = 2
 text = "Interact"
 
 [node name="InteractValue" type="Button" parent="SettingsMenu/SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Interact"]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -237,7 +237,9 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 8
 theme = ExtResource("2_c7yu4")
-text = "Space"
+text = "[key]"
+script = ExtResource("4_hnixr")
+action = "interact"
 
 [node name="Up" type="Control" parent="SettingsMenu/SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
 custom_minimum_size = Vector2(0, 25)
@@ -257,7 +259,7 @@ size_flags_horizontal = 2
 text = "Up"
 
 [node name="UpValue" type="Button" parent="SettingsMenu/SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Up"]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -271,7 +273,9 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 8
 theme = ExtResource("2_c7yu4")
-text = "W"
+text = "[key]"
+script = ExtResource("4_hnixr")
+action = "up"
 
 [node name="Down" type="Control" parent="SettingsMenu/SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
 custom_minimum_size = Vector2(0, 25)
@@ -291,7 +295,7 @@ size_flags_horizontal = 2
 text = "Down"
 
 [node name="UpValue" type="Button" parent="SettingsMenu/SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Down"]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -305,7 +309,9 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 8
 theme = ExtResource("2_c7yu4")
-text = "S"
+text = "[key]"
+script = ExtResource("4_hnixr")
+action = "down"
 
 [node name="Left" type="Control" parent="SettingsMenu/SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
 custom_minimum_size = Vector2(0, 25)
@@ -325,7 +331,7 @@ size_flags_horizontal = 2
 text = "Left"
 
 [node name="LeftValue" type="Button" parent="SettingsMenu/SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Left"]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -339,7 +345,9 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 8
 theme = ExtResource("2_c7yu4")
-text = "A"
+text = "[key]"
+script = ExtResource("4_hnixr")
+action = "left"
 
 [node name="Right" type="Control" parent="SettingsMenu/SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
 custom_minimum_size = Vector2(0, 25)
@@ -358,8 +366,8 @@ grow_vertical = 2
 size_flags_horizontal = 2
 text = "Right"
 
-[node name="LeftValue" type="Button" parent="SettingsMenu/SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Right"]
-custom_minimum_size = Vector2(50, 0)
+[node name="RightValue" type="Button" parent="SettingsMenu/SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Right"]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -373,7 +381,9 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 8
 theme = ExtResource("2_c7yu4")
-text = "D"
+text = "[key]"
+script = ExtResource("4_hnixr")
+action = "right"
 
 [node name="Space3" type="Control" parent="SettingsMenu/SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
 custom_minimum_size = Vector2(0, 5)
