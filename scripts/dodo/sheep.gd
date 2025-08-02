@@ -10,8 +10,13 @@ func _ready():
 	chooseDirection()
 
 func chooseDirection():
-	direction = Vector2(randfn(0.0, 1.0), randfn(0.0, 1.0))
-	direction.normalized()
+	direction = Vector2(randfn(0.01, 1.0), randfn(0.01, 1.0))
+	direction = direction.normalized()
 
 func _process(delta: float) -> void:
-	move_and_collide(direction * moveSpeed * delta);
+	var collision = move_and_collide(direction * moveSpeed * delta);
+	if collision:
+		onCollision(collision)
+
+func onCollision(collision: KinematicCollision2D):
+	direction = direction.bounce(collision.get_normal())
