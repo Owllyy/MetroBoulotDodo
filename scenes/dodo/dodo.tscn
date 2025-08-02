@@ -1,3 +1,29 @@
-[gd_scene format=3 uid="uid://gcmy85wqs0x1"]
+[gd_scene load_steps=3 format=3 uid="uid://gcmy85wqs0x1"]
+
+[ext_resource type="PackedScene" uid="uid://e3miiu2pgoir" path="res://scenes/dodo/sheep.tscn" id="1_thjg4"]
+[ext_resource type="Script" uid="uid://oljr8pediex" path="res://scripts/dodo/enclosure.gd" id="2_65jhe"]
 
 [node name="Dodo" type="Node2D"]
+
+[node name="enclosure" type="StaticBody2D" parent="."]
+script = ExtResource("2_65jhe")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="enclosure"]
+
+[node name="Polygon2D" type="Polygon2D" parent="enclosure"]
+visible = false
+polygon = PackedVector2Array(105.145, 284.627, 233.142, 90.6926, 469.742, 40.2696, 756.765, 59.663, 1125.24, 141.116, 1206.69, 315.657, 1161.82, 432.987, 978.781, 475.226, 776.973, 493.999, 631.483, 606.636, 415.595, 625.409, 166.855, 592.556, 44.8312, 442.373)
+uv = PackedVector2Array(-356.5, 1, -323.5, -49, -262.5, -62, -188.5, -57, -93.5, -36, -72.5, 9, -84.07, 39.25, -131.26, 50.14, -183.29, 54.98, -220.8, 84.02, -276.46, 88.86, -340.59, 80.39, -372.05, 41.67)
+
+[node name="Polygon2D2" type="Polygon2D" parent="enclosure"]
+polygon = PackedVector2Array(105.145, 284.627, 233.142, 90.6926, 469.742, 40.2696, 756.765, 59.663, 1125.24, 141.116, 1206.69, 315.657, 1161.82, 432.987, 978.781, 475.226, 776.973, 493.999, 631.483, 606.636, 415.595, 625.409, 166.855, 592.556, 44.8312, 442.373, 76.4619, 441.858, 134.542, 290.608, 254.332, 109.108, 470.922, 63.128, 751.642, 86.118, 1103.75, 161.138, 1176.35, 313.598, 1135.21, 407.978, 973.072, 444.278, 778.262, 462.428, 625.802, 578.588, 415.262, 597.948, 175.682, 566.488)
+uv = PackedVector2Array(-356.5, 1, -323.5, -49, -262.5, -62, -188.5, -57, -93.5, -36, -72.5, 9, -84.07, 39.25, -131.26, 50.14, -183.29, 54.98, -220.8, 84.02, -276.46, 88.86, -340.59, 80.39, -372.05, 41.67, 76.4619, 441.858, 134.542, 290.608, 254.332, 109.108, 470.922, 63.128, 751.642, 86.118, 1103.75, 161.138, 1176.35, 313.598, 1135.21, 407.978, 973.072, 444.278, 778.262, 462.428, 625.802, 578.588, 415.262, 597.948, 175.682, 566.488)
+polygons = [PackedInt32Array(12, 0, 1, 2, 3, 4, 5, 19, 18, 17, 16, 15, 14, 13), PackedInt32Array(12, 11, 10, 9, 8, 7, 6, 5, 19, 20, 21, 22, 23, 24, 25, 13)]
+internal_vertex_count = 13
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+
+[node name="Sheep" parent="." instance=ExtResource("1_thjg4")]
+position = Vector2(594, 305)
+moveSpeed = 50

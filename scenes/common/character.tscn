@@ -1,22 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://b73vwuiajjkax"]
 
-[ext_resource type="Script" uid="uid://da7iht40bgwhp" path="res://scripts/common/character.gd" id="1_pjt0s"]
-[ext_resource type="Texture2D" uid="uid://hpyqsnkeypdl" path="res://icon.svg" id="2_wa5vi"]
+[ext_resource type="Script" uid="uid://da7iht40bgwhp" path="res://scripts/common/character.gd" id="1_jlk85"]
+[ext_resource type="Texture2D" uid="uid://hpyqsnkeypdl" path="res://icon.svg" id="2_6ogmm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_04cgv"]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-script = ExtResource("1_pjt0s")
-DASH_LENGTH = 6.0
+script = ExtResource("1_jlk85")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_04cgv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, 0)
-scale = Vector2(0.828125, 0.84375)
-texture = ExtResource("2_wa5vi")
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_6ogmm")

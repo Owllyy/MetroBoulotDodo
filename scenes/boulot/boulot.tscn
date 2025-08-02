@@ -1,3 +1,82 @@
-[gd_scene format=3 uid="uid://cf7sqmfjnnv4g"]
+[gd_scene load_steps=9 format=3 uid="uid://cf7sqmfjnnv4g"]
+
+[ext_resource type="PackedScene" uid="uid://b73vwuiajjkax" path="res://scenes/common/character.tscn" id="1_vsk8r"]
+[ext_resource type="Texture2D" uid="uid://xbr4usydc0pg" path="res://assets/boulot/brouillonusine.png" id="2_e3s8n"]
+[ext_resource type="Texture2D" uid="uid://dvmqo42643ibw" path="res://assets/boulot/whitepixel.png" id="3_5k82q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqw1y"]
+size = Vector2(52, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3s8n"]
+size = Vector2(52.5, 729)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5k82q"]
+size = Vector2(273, 265)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xivms"]
+size = Vector2(1300, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iwto3"]
+size = Vector2(100, 100)
 
 [node name="Boulot" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_vsk8r")]
+disable_mode = 2
+
+[node name="PlayerCollider" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_wqw1y")
+
+[node name="Environment" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Environment"]
+z_index = -1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_e3s8n")
+
+[node name="Boundaries" type="StaticBody2D" parent="Environment"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Boundaries"]
+position = Vector2(-489, 2.5)
+shape = SubResource("RectangleShape2D_e3s8n")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment/Boundaries"]
+position = Vector2(506.5, -231.5)
+shape = SubResource("RectangleShape2D_5k82q")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment/Boundaries"]
+position = Vector2(-1, -350)
+shape = SubResource("RectangleShape2D_xivms")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Environment/Boundaries"]
+position = Vector2(-1, 350)
+shape = SubResource("RectangleShape2D_xivms")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Environment/Boundaries"]
+position = Vector2(624.75, 2.5)
+shape = SubResource("RectangleShape2D_e3s8n")
+
+[node name="TriZone" type="Area2D" parent="."]
+position = Vector2(-400, 0)
+
+[node name="Sprite" type="Sprite2D" parent="TriZone"]
+modulate = Color(7.21961e-07, 0.624772, 0.0137656, 0.454902)
+scale = Vector2(100, 100)
+texture = ExtResource("3_5k82q")
+
+[node name="Collision" type="CollisionShape2D" parent="TriZone"]
+shape = SubResource("RectangleShape2D_iwto3")
+
+[node name="MiniGameTri" type="Node2D" parent="."]
