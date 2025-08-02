@@ -7,7 +7,7 @@ var minSheepSpeed : int = 20
 
 func _ready() -> void:
 	random.randomize()
-	start(7)
+	start(3)
 
 func start(iteration: int):
 	var sheepsToSpawn = iteration * 3
@@ -66,4 +66,4 @@ func get_random_point_in_polygon(polygon: PackedVector2Array) -> Vector2:
 func _process(delta: float) -> void:
 	var alive_sheep = get_tree().get_nodes_in_group("sheep")
 	if alive_sheep.size() == 0:
-		print("Game Over")
+		GameManager.goToNextStage()
