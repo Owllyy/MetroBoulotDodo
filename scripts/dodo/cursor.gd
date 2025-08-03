@@ -49,11 +49,11 @@ func checkSheepCollisionWithTrail(threshold: float = 5.0):
 		if !is_instance_valid(sheep):
 			continue
 		
-		var index = is_sheep_touching_trail(sheep, threshold)
+		var index = is_sheep_touching_trail(sheep)
 		if index > 0:
 			line.points = line.points.slice(index)
 
-func is_sheep_touching_trail(sheep_node, threshold: float) -> int:
+func is_sheep_touching_trail(sheep_node) -> int:
 	var sheep_collision = null
 	for child in sheep_node.get_children():
 		if child is CollisionShape2D:

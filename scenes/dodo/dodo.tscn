@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://gcmy85wqs0x1"]
+[gd_scene load_steps=19 format=3 uid="uid://gcmy85wqs0x1"]
 
 [ext_resource type="Script" uid="uid://c0xuatv3qoe6w" path="res://scripts/dodo/dodoManager.gd" id="1_ijlwg"]
 [ext_resource type="Texture2D" uid="uid://hpyqsnkeypdl" path="res://icon.svg" id="2_65jhe"]
@@ -59,6 +59,12 @@ b = Vector2(246, 106)
 [sub_resource type="Curve" id="Curve_dy05f"]
 _data = [Vector2(0, 0.303371), 0.0, 0.0, 0, 0, Vector2(0.0903226, 0.426966), 0.0435393, 0.0435393, 0, 0, Vector2(1, 0.730337), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dy05f"]
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Dodo" type="Node2D"]
 script = ExtResource("1_ijlwg")
@@ -145,3 +151,13 @@ position = Vector2(513, 317)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SpawnArea"]
 polygon = PackedVector2Array(-360, 99, -212, -165, -18, -203, 219, -177, 552, -116, 584, 18, 519, 75, 243, 92, 88, 214, -89, 229, -295, 208)
+
+[node name="TimerBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(300, 0)
+offset_left = 833.0
+offset_top = 508.0
+offset_right = 933.0
+offset_bottom = 535.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_dy05f")
+max_value = 30.0
+show_percentage = false

@@ -9,8 +9,17 @@ extends Node2D
 
 var is_dark : bool = false
 
+var difficulty = 0
 var current_shoes : int = 0
 var quota : int = 5
+
+func _ready() -> void:
+	update_score_display()
+	trigame.hide()
+	
+func set_difficulty(difficulty : int):
+	#on regarde le jour et on set
+	pass
 
 func _openclose_minigame(name : String):
 	if name == "trizone":
@@ -24,10 +33,10 @@ func _openclose_minigame(name : String):
 	
 func update_score():
 	current_shoes += 1
+	update_score_display()
+	if current_shoes >= quota:
+		print("winner")
 	
 func update_score_display():
 	score_text.text = str(current_shoes) + " / " + str(quota)
 	
-func _ready() -> void:
-	update_score_display()
-	trigame.hide()

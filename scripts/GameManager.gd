@@ -7,6 +7,8 @@ var currentStage := 0
 var dbg_dontChangeStage := false
 var dbg_dontChangeDay := false
 
+var is_dark := false
+
 func _ready():
 	var currentScene = get_tree().current_scene
 	for i in range(0, stagesPerDay.size()):
