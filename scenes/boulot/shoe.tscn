@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cmg6ketmw32o5"]
 
-[ext_resource type="Script" path="res://scripts/boulot/shoe.gd" id="1_v7v33"]
+[ext_resource type="Script" uid="uid://duew5bruno66n" path="res://scripts/boulot/shoe.gd" id="1_v7v33"]
 [ext_resource type="Texture2D" uid="uid://c524b6nem54kp" path="res://assets/boulot/shoe_white.png" id="2_5q1li"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5lyde"]

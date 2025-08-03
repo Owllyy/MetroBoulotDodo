@@ -1,30 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://cf7sqmfjnnv4g"]
+[gd_scene load_steps=8 format=3 uid="uid://cf7sqmfjnnv4g"]
 
-[ext_resource type="PackedScene" uid="uid://b73vwuiajjkax" path="res://scenes/common/character.tscn" id="1_vsk8r"]
 [ext_resource type="Script" uid="uid://bssa0rn1tnlge" path="res://scripts/boulot/boulot.gd" id="1_wqw1y"]
-[ext_resource type="Texture2D" uid="uid://xbr4usydc0pg" path="res://assets/boulot/brouillonusine.png" id="2_e3s8n"]
-[ext_resource type="Script" path="res://scripts/boulot/player_collider.gd" id="2_xivms"]
-[ext_resource type="Texture2D" uid="uid://dvmqo42643ibw" path="res://assets/boulot/whitepixel.png" id="3_5k82q"]
-[ext_resource type="Texture2D" uid="uid://blvmmsvd7q31q" path="res://assets/boulot/brouillontapis.png" id="6_iwto3"]
-[ext_resource type="Script" path="res://scripts/boulot/mini_game_tri.gd" id="6_lssby"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqw1y"]
-size = Vector2(52, 52)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3s8n"]
-size = Vector2(52.5, 729)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5k82q"]
-size = Vector2(273, 265)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xivms"]
-size = Vector2(1300, 36)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iwto3"]
-size = Vector2(100, 100)
+[ext_resource type="Texture2D" uid="uid://chmmamo8crmok" path="res://assets/boulot/usinetapisfinal.png" id="3_5k82q"]
+[ext_resource type="Script" uid="uid://cn8k5kh7oe3og" path="res://scripts/boulot/mini_game_tri.gd" id="6_lssby"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dioeo"]
-size = Vector2(182, 315)
+size = Vector2(264, 220)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lssby"]
 size = Vector2(305, 180)
@@ -72,64 +53,6 @@ size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0, 0, 0, 0.788235)
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_vsk8r")]
-disable_mode = 2
-collision_mask = 5
-
-[node name="PlayerCollider" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("RectangleShape2D_wqw1y")
-script = ExtResource("2_xivms")
-
-[node name="Environment" type="Node2D" parent="."]
-
-[node name="TextureRect" type="TextureRect" parent="Environment"]
-z_index = -1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -640.0
-offset_top = -360.0
-offset_right = 640.0
-offset_bottom = 360.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_e3s8n")
-
-[node name="Boundaries" type="StaticBody2D" parent="Environment"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Boundaries"]
-position = Vector2(-489, 2.5)
-shape = SubResource("RectangleShape2D_e3s8n")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment/Boundaries"]
-position = Vector2(506.5, -231.5)
-shape = SubResource("RectangleShape2D_5k82q")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Environment/Boundaries"]
-position = Vector2(-1, -350)
-shape = SubResource("RectangleShape2D_xivms")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Environment/Boundaries"]
-position = Vector2(-1, 350)
-shape = SubResource("RectangleShape2D_xivms")
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="Environment/Boundaries"]
-position = Vector2(624.75, 2.5)
-shape = SubResource("RectangleShape2D_e3s8n")
-
-[node name="TriZone" type="Area2D" parent="."]
-position = Vector2(-400, 0)
-
-[node name="Sprite" type="Sprite2D" parent="TriZone"]
-modulate = Color(7.21961e-07, 0.624772, 0.0137656, 0.454902)
-scale = Vector2(100, 100)
-texture = ExtResource("3_5k82q")
-
-[node name="Collision" type="CollisionShape2D" parent="TriZone"]
-shape = SubResource("RectangleShape2D_iwto3")
-
 [node name="MiniGameTri" type="Node2D" parent="."]
 script = ExtResource("6_lssby")
 
@@ -137,6 +60,7 @@ script = ExtResource("6_lssby")
 position = Vector2(-750, -140)
 
 [node name="area" type="CollisionShape2D" parent="MiniGameTri/shoe_spawn_area"]
+position = Vector2(-41, -9)
 shape = SubResource("RectangleShape2D_dioeo")
 
 [node name="background" type="TextureRect" parent="MiniGameTri"]
@@ -151,7 +75,7 @@ offset_right = 640.0
 offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_iwto3")
+texture = ExtResource("3_5k82q")
 metadata/_edit_lock_ = true
 
 [node name="BoxWhite" type="Area2D" parent="MiniGameTri" groups=["dropable"]]
@@ -183,11 +107,6 @@ collision_mask = 2
 [node name="area" type="CollisionShape2D" parent="MiniGameTri/shoe_despawn"]
 shape = SubResource("RectangleShape2D_tualn")
 
-[node name="test" type="Sprite2D" parent="."]
-position = Vector2(556, 254)
-scale = Vector2(195.5, 225.5)
-texture = ExtResource("3_5k82q")
-
 [node name="LightTimer" type="Timer" parent="."]
 wait_time = 0.5
 
@@ -202,8 +121,6 @@ max_value = 30.0
 value = 10.0
 show_percentage = false
 
-[connection signal="body_entered" from="TriZone" to="CharacterBody2D/PlayerCollider" method="_on_tri_zone_body_entered"]
-[connection signal="body_exited" from="TriZone" to="CharacterBody2D/PlayerCollider" method="_on_tri_zone_body_exited"]
 [connection signal="body_entered" from="MiniGameTri/BoxWhite" to="MiniGameTri" method="_on_box_white_body_entered"]
 [connection signal="body_entered" from="MiniGameTri/BoxBlack" to="MiniGameTri" method="_on_box_black_body_entered"]
 [connection signal="timeout" from="MiniGameTri/SpawnTimer" to="MiniGameTri" method="_on_timer_timeout"]

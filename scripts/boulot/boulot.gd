@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var trigame = $MiniGameTri
-@onready var player = $CharacterBody2D
 
 @onready var darkness = $Camera2D/DarkOverlay/dark
 
@@ -21,6 +20,7 @@ var quota : int = 5
 
 func _ready() -> void:
 	start(GameManager.getDayCount())
+	trigame.show()
 
 func start(iteration: int):
 	# Change if you want to give more or less time per iteration
@@ -53,7 +53,7 @@ func _on_timer_timeout():
 	gameFail()
 
 func gameFail():
-	GameManager.goToNextStage()
+	GameManager.goToLooseScreen()
 	print("Game Failed - Time's up!")
 
 func set_difficulty(difficulty : int):
@@ -66,16 +66,6 @@ func switch_light():
 	else:
 		darkness.color = color_bright
 
-func _openclose_minigame(name : String):
-	if name == "trizone":
-		if trigame.is_visible_in_tree():
-			player.can_move = true
-			trigame.hide()
-		else:
-			player.can_move = false
-			trigame.show()
-			trigame.start_spawner()
-	
 func update_score():
 	current_shoes += 1
 	update_score_display()
