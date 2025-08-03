@@ -28,8 +28,11 @@ func start(iteration: int):
 	# Change if you want to give more or less time per iteration
 	setupTimer(25 + 2 * iteration)
 	quota = 5 + (4 * iteration)
+	$MiniGameTri/SpawnTimer.wait_time = (1.1 - (0.2 * iteration))
 	update_score_display()
+	trigame.set_shoe_speed(90 * (0.8 * iteration))
 	darkness.color = color_bright
+	light_timer.wait_time = 6 - iteration
 	light_timer.start()
 	trigame.hide()
 	game_timer.start()
@@ -61,6 +64,11 @@ func gameFail():
 func set_difficulty(difficulty : int):
 	#on regarde le jour et on set
 	pass
+
+func light_blink():
+	switch_light()
+	await get_tree().create_timer(1.5).timeout
+	switch_light()
 	
 func switch_light():
 	if darkness.color == color_bright:
@@ -81,4 +89,4 @@ func update_score_display():
 func _on_light_timer_timeout() -> void:
 	var onoff = randi() & 1
 	if onoff == 1 :
-		switch_light()
+		light_blink()
