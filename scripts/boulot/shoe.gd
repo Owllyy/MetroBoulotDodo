@@ -3,7 +3,10 @@ extends CharacterBody2D
 @onready var sprite = $Sprite
 
 var is_dragging: bool = false
-var color: int = 0  # 0 = white, 1 = black
+var shoe_color: int = 0  # 0 = white, 1 = black
+
+const color_default = Color(1,1,1)
+const color_dark = Color(0,0,0)
 
 # Variable partagée entre tous les objets : l'objet actuellement drag
 static var current_dragged: CharacterBody2D = null
@@ -12,12 +15,11 @@ func _process(delta: float) -> void:
 	if is_dragging:
 		global_position = get_global_mouse_position()
 	if Globals.is_dark == true:
-		#modulate pour mettre en noir
-		pass
+		sprite.modulate = color_dark
 	else:
-		#remettre le sprite en normal
-		pass
-		
+		if sprite.modulate != color_default:
+			sprite.modulate = color_default
+
 func _unhandled_input(event):
 	# Si on clique sur ce collider (via input_event), on commence à drag
 	if is_dragging and event is InputEventMouseButton:
