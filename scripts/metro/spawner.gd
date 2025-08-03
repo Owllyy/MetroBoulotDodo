@@ -5,12 +5,16 @@ extends Node2D
 @export var radius: float = 200.0
 @export var speed: float = 300.0
 @export var cd: float = 10.0
+@export var active: bool = false
 
 
 @onready var timer: Timer = $Timer
 
+func set_cd(value):
+	cd = value
+	timer.wait_time = cd
 
-func _ready() -> void:
+func set_active():
 	timer.timeout.connect(spawn_projectiles)
 	timer.wait_time = cd
 
