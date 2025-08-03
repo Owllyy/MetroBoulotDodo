@@ -4,6 +4,7 @@ extends Node
 @export var stageLostScreen : PackedScene
 @export var stageLostTextures : Array[Texture2D] = []
 @export var gameLostScreen : PackedScene
+@export var nextDayScreen : PackedScene
 
 var isStarted := false
 var currentDay := 1
@@ -42,8 +43,17 @@ func goToNextStage():
 		if currentStage % stagesPerDay.size() == 0:
 			currentDay += 1
 			currentStage = 0
+			get_tree().change_scene_to_packed(nextDayScreen)
+			return
 	else:
 		isStarted = true
+		get_tree().change_scene_to_packed(nextDayScreen)
+		return
+	
+	get_tree().change_scene_to_packed(stagesPerDay[currentStage])
+
+func startCurrentStage():
+	assert(!stagesPerDay.is_empty(), "Must have at least one stage per day")
 	
 	get_tree().change_scene_to_packed(stagesPerDay[currentStage])
 
