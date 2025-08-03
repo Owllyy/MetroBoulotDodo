@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var sprite : AnimatedSprite2D
 @export var hurt_sound : AudioStreamPlayer2D
@@ -84,3 +85,8 @@ func stop_blink_effect():
 	
 	var sprite = $Sprite2D
 	sprite.modulate.a = 1.0
+
+signal get_hit;
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	if body is Projectile:
+		get_hit.emit()

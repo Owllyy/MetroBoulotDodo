@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d3xvbx7rc0157"]
+[gd_scene load_steps=20 format=3 uid="uid://d3xvbx7rc0157"]
 
 [ext_resource type="Script" uid="uid://c6xnha4tqygq2" path="res://scripts/metro/metro.gd" id="1_rnm2g"]
 [ext_resource type="Texture2D" uid="uid://cafrk7n8iwh7o" path="res://assets/metro/metro.png" id="2_3b0xe"]
@@ -10,8 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://dok5rbkm4y31v" path="res://assets/metro/ui/arrow_pressed.png" id="5_oi6tm"]
 [ext_resource type="AudioStream" uid="uid://c7hqgm4glahrb" path="res://assets/metro/sound/ding.wav" id="6_yom83"]
 [ext_resource type="AudioStream" uid="uid://7uph8s0un2u1" path="res://assets/metro/sound/door_open.wav" id="7_3b0xe"]
+[ext_resource type="PackedScene" uid="uid://v2rchnc6t354" path="res://scenes/metro/spawner.tscn" id="7_fvxbg"]
 [ext_resource type="AudioStream" uid="uid://bgvn0e2twpjwe" path="res://assets/metro/sound/background.mp3" id="7_m6644"]
 [ext_resource type="AudioStream" uid="uid://bhahcfnxdaplv" path="res://assets/metro/sound/door_close.wav" id="8_m6644"]
+[ext_resource type="AudioStream" uid="uid://crdkywoqgsybp" path="res://assets/metro/sound/Métro qui démarre.wav" id="11_ut38g"]
+[ext_resource type="AudioStream" uid="uid://d3uy2rk7bxqfj" path="res://assets/metro/sound/métro qui roule mp3.mp3" id="12_fvxbg"]
+[ext_resource type="AudioStream" uid="uid://bvxobboaxbd5o" path="res://assets/metro/sound/Métro qui arrive 2.mp3" id="13_b4uob"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_clmum"]
 animations = [{
@@ -69,13 +73,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Metro" type="Node2D" node_paths=PackedStringArray("wagon", "camera", "ding", "door_open", "door_close", "arrow_left", "arrow_right", "arrow_down", "arrow_up", "character")]
+[node name="Metro" type="Node2D" node_paths=PackedStringArray("spawner", "wagon", "camera", "ding", "door_open", "door_close", "accel", "deccel", "arrow_left", "arrow_right", "arrow_down", "arrow_up", "character")]
 script = ExtResource("1_rnm2g")
+spawner = NodePath("game_space/Spawner")
 wagon = NodePath("wagon")
 camera = NodePath("Camera2D")
 ding = NodePath("Sound/ding")
 door_open = NodePath("Sound/door_open")
 door_close = NodePath("Sound/door_close")
+accel = NodePath("Sound/accel")
+deccel = NodePath("Sound/deccel")
 arrow_left = NodePath("arrow_left")
 arrow_right = NodePath("arrow_right")
 arrow_down = NodePath("arrow_down")
@@ -121,6 +128,9 @@ region_rect = Rect2(0, 511.851, 1280, 768.149)
 top_level = true
 shape = SubResource("CircleShape2D_oi6tm")
 
+[node name="Spawner" parent="game_space" instance=ExtResource("7_fvxbg")]
+cd = 5.0
+
 [node name="wall" type="StaticBody2D" parent="."]
 visible = false
 collision_layer = 4
@@ -148,18 +158,35 @@ polygon = PackedVector2Array(10, 1, -5, -16, -24, -47, -38, -89, -42, -128, -104
 
 [node name="ding" type="AudioStreamPlayer2D" parent="Sound"]
 stream = ExtResource("6_yom83")
+volume_db = -15.0
 
 [node name="door_open" type="AudioStreamPlayer2D" parent="Sound"]
 stream = ExtResource("7_3b0xe")
+volume_db = -30.3
 
 [node name="door_close" type="AudioStreamPlayer2D" parent="Sound"]
 stream = ExtResource("8_m6644")
+volume_db = -10.0
 
 [node name="background" type="AudioStreamPlayer2D" parent="Sound"]
 stream = ExtResource("7_m6644")
 volume_db = -30.0
 pitch_scale = 1.25
 autoplay = true
+
+[node name="accel" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("11_ut38g")
+volume_db = -30.0
+attenuation = 3.4822
+
+[node name="running" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("12_fvxbg")
+volume_db = -40.0
+autoplay = true
+
+[node name="deccel" type="AudioStreamPlayer2D" parent="Sound"]
+stream = ExtResource("13_b4uob")
+volume_db = -35.0
 
 [node name="arrow_right" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -197,4 +224,5 @@ frame_progress = 0.535918
 speed_scale = 0.7
 
 [connection signal="animation_finished" from="wagon" to="." method="_on_wagon_animation_finished"]
+[connection signal="get_hit" from="CharacterBody2D" to="." method="_on_character_body_2d_get_hit"]
 [connection signal="body_exited" from="game_space" to="." method="_on_game_space_body_exited"]

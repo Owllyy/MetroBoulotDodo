@@ -1,6 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxcx1girur5ri"]
+[gd_scene load_steps=4 format=3 uid="uid://dxcx1girur5ri"]
 
 [ext_resource type="Script" uid="uid://dr6tnmp30c4eb" path="res://scripts/metro/projectile.gd" id="1_jdar4"]
+[ext_resource type="SpriteFrames" uid="uid://cvk08r7rdpmsm" path="res://assets/common/character.tres" id="2_ypnxx"]
 
-[node name="Projectile" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_jdar4"]
+radius = 10.0499
+
+[node name="Projectile" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_jdar4")
+sprite = NodePath("AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jdar4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.468128, 0.468128, 0.468128, 1)
+sprite_frames = ExtResource("2_ypnxx")
+animation = &"idle"
