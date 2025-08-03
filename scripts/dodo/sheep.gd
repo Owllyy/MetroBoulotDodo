@@ -68,7 +68,7 @@ func _process(delta: float) -> void:
 	if state_timer >= state_change_time:
 		changeState()
 
-func handleIdleState(delta: float):
+func handleIdleState(_delta: float):
 	pass
 
 func handleWalkState(delta: float):

@@ -39,7 +39,7 @@ func start(iteration: int):
 	trigame.hide()
 	game_timer.start()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if darkness.color == color_dark:
 		Globals.is_dark = true
 	else :

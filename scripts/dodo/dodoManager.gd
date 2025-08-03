@@ -79,7 +79,7 @@ func get_random_point_in_polygon(polygon: PackedVector2Array) -> Vector2:
 	# Fallback: return center of bounding box
 	return Vector2((min_x + max_x) / 2, (min_y + max_y) / 2)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	timerSlider.value = game_timer.time_left
 	var alive_sheep = get_tree().get_nodes_in_group("sheep")
 	if alive_sheep.size() == 0:

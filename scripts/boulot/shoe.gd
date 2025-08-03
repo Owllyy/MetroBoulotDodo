@@ -11,7 +11,7 @@ const color_dark = Color(0,0,0)
 # Variable partagée entre tous les objets : l'objet actuellement drag
 static var current_dragged: CharacterBody2D = null
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_dragging:
 		global_position = get_global_mouse_position()
 	if Globals.is_dark == true:
@@ -30,7 +30,7 @@ func _unhandled_input(event):
 			current_dragged = null
 
 # Déclenché quand on clique sur le collider du CharacterBody2D
-func _input_event(viewport, event, shape_idx):
+func _input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			# Si aucun autre objet n'est en train d'être drag
