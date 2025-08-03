@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://4kkpvhifi881"]
+[gd_scene load_steps=13 format=3 uid="uid://4kkpvhifi881"]
 
 [ext_resource type="Script" uid="uid://dc5170xyds48g" path="res://scripts/common/mainMenu.gd" id="1_1bltu"]
 [ext_resource type="Texture2D" uid="uid://jttgffsi34eg" path="res://assets/common/menu.png" id="2_4ddm4"]
 [ext_resource type="Theme" uid="uid://dlukdkpy0mpss" path="res://assets/common/mainSettings.tres" id="2_c7yu4"]
+[ext_resource type="Texture2D" uid="uid://cn6v47wxjbaqi" path="res://assets/common/door.png" id="3_4ddm4"]
+[ext_resource type="Theme" uid="uid://bpcln3x4i8if6" path="res://assets/common/mainMenu.tres" id="3_g4dbv"]
 [ext_resource type="Script" uid="uid://bdl6rtb8waxmm" path="res://scripts/common/settings_menu.gd" id="3_hnixr"]
 [ext_resource type="Script" uid="uid://3gjsgqdeg42p" path="res://scripts/common/assign_key_button.gd" id="4_hnixr"]
+[ext_resource type="Texture2D" uid="uid://stid35knijf4" path="res://assets/common/gear.png" id="5_xmut3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmut3"]
 bg_color = Color(0, 0, 0, 0)
@@ -53,27 +56,33 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_hnixr")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -117.0
+offset_left = -122.0
 offset_top = 20.0
-offset_right = -70.0
-offset_bottom = 51.0
+offset_right = -82.0
+offset_bottom = 71.0
 grow_horizontal = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "QUIT"
+theme = ExtResource("3_g4dbv")
+icon = ExtResource("3_4ddm4")
+flat = true
+expand_icon = true
 
 [node name="SettingsButton" type="Button" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -222.0
-offset_top = 20.0
+offset_left = -189.0
+offset_top = 21.0
 offset_right = -140.0
-offset_bottom = 51.0
+offset_bottom = 69.0
 grow_horizontal = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "SETTINGS"
+theme = ExtResource("3_g4dbv")
+icon = ExtResource("5_xmut3")
+flat = true
+expand_icon = true
 
 [node name="SettingsMenu" type="Control" parent="."]
 visible = false
@@ -453,5 +462,6 @@ size_flags_vertical = 0
 text = "Close"
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="SettingsMenu/SettingsPopup/MarginContainer/Control/CloseSettings" to="." method="_on_close_settings_pressed"]
