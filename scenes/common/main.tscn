@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://4kkpvhifi881"]
+[gd_scene load_steps=13 format=3 uid="uid://4kkpvhifi881"]
 
 [ext_resource type="Script" uid="uid://dc5170xyds48g" path="res://scripts/common/mainMenu.gd" id="1_1bltu"]
 [ext_resource type="AudioStream" uid="uid://dmt3vfb2d1qo0" path="res://assets/common/main_music.mp3" id="2_0is7p"]
 [ext_resource type="Texture2D" uid="uid://jttgffsi34eg" path="res://assets/common/menu.png" id="2_4ddm4"]
 [ext_resource type="Texture2D" uid="uid://cn6v47wxjbaqi" path="res://assets/common/door.png" id="3_4ddm4"]
 [ext_resource type="Theme" uid="uid://bpcln3x4i8if6" path="res://assets/common/mainMenu.tres" id="3_g4dbv"]
+[ext_resource type="Texture2D" uid="uid://b4xudoi6esl13" path="res://assets/common/keepup.png" id="4_xmut3"]
 [ext_resource type="Texture2D" uid="uid://stid35knijf4" path="res://assets/common/gear.png" id="5_xmut3"]
 [ext_resource type="PackedScene" uid="uid://qxbew036jj7d" path="res://scenes/common/settings_menu.tscn" id="7_g4dbv"]
 
@@ -32,13 +33,18 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_4ddm4")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1089, 638)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("4_xmut3")
+
 [node name="Play" type="Button" parent="."]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -334.0
+offset_left = -315.0
 offset_top = -130.0
 offset_right = -70.0
 offset_bottom = -33.0
