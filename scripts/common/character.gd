@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 @export var sprite : AnimatedSprite2D
-@export var hurt_sound : AudioStreamPlayer2D
+@export var hurt_sound : AudioStream
 
 @export var BASE_SPEED : float = 500
 @export var SPRINT_SPEED : float = 700.0
@@ -55,7 +55,7 @@ func _physics_process(delta: float):
 		external_force = Vector2.ZERO
 	
 func take_damage():
-	hurt_sound.play()
+	GameManager.playSFXOnce(hurt_sound)
 	if life > 1:
 		life -= 1
 		return 0

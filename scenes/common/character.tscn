@@ -9,11 +9,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_6ogmm"]
 radius = 14.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "hurt_sound")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
 collision_mask = 7
 script = ExtResource("1_jlk85")
 sprite = NodePath("Sprite2D")
-hurt_sound = NodePath("HurtSound")
+hurt_sound = ExtResource("3_6ogmm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_04cgv")
@@ -25,9 +25,6 @@ zoom = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("2_6ogmm")
 animation = &"walk_right"
 speed_scale = 1.5
-
-[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_6ogmm")
 
 [node name="hurtbox" type="Area2D" parent="."]
 
