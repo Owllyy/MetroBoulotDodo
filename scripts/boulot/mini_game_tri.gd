@@ -2,7 +2,7 @@ extends Node2D
 
 const shoe_white_texture = preload("res://assets/boulot/shoe_white.png")
 const shoe_black_texture = preload("res://assets/boulot/shoe_black.png")
-const SHOE_SCENE = preload("res://scenes/boulot/components/shoe.tscn")
+const SHOE_SCENE = preload("res://scenes/boulot/shoe.tscn")
 
 @onready var spawn_area = $shoe_spawn_area/area
 @onready var spawn_timer = $SpawnTimer
