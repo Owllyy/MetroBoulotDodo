@@ -26,7 +26,7 @@ var NUMBER_OF_EVENT = 5;
 @export var arrow_up: AnimatedSprite2D
 @export var character: CharacterBody2D
 
-@onready var event_timer: Timer = $Timer
+var event_timer: Timer
 var EVENT_RYTHM: float = 5.5
 var EVENT_DURATION: float = 3.0
 var EVENT_PREPARE_DURATION: float = 1.5
@@ -222,9 +222,7 @@ func _on_game_space_body_exited(body: Node2D) -> void:
 			var bodies_in_zone = game_zone.get_overlapping_bodies()
 			var is_in_zone = false
 			for body_in in bodies_in_zone:
-				print("body")
 				if body_in is Player:
-					print("player")
 					is_in_zone = true
 			if is_in_zone == false:
 				_on_character_body_2d_get_hit()
@@ -247,9 +245,7 @@ func _on_character_body_2d_get_hit() -> void:
 			var bodies_in_zone = game_zone.get_overlapping_bodies()
 			var is_in_zone = false
 			for body_in in bodies_in_zone:
-				print("body")
 				if body_in is Player:
-					print("player")
 					is_in_zone = true
 			if is_in_zone == false:
 				_on_character_body_2d_get_hit()

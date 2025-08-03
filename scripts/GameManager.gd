@@ -15,7 +15,6 @@ func _ready() -> void:
 	assert(stagesPerDay.size() == stageLostTextures.size(), "Must have one game lost texture per stage")
 	
 	for i in range(0, stagesPerDay.size()):
-		print(stagesPerDay[i].resource_path + " " + get_tree().current_scene.scene_file_path)
 		if stagesPerDay[i].resource_path == get_tree().current_scene.scene_file_path:
 			isStarted = true
 			currentStage = i

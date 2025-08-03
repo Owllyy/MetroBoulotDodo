@@ -49,7 +49,6 @@ func _process(delta: float) -> void:
 func setupTimer(timer_duration: float):
 	game_timer = Timer.new()
 	game_timer.wait_time = timer_duration
-	#print(game_timer.wait_time)
 	
 	timerSlider.max_value = timer_duration
 	game_timer.one_shot = true
@@ -69,7 +68,6 @@ func lose_life():
 
 func gameFail():
 	GameManager.goToLooseScreen()
-	print("Game Failed - Time's up!")
 
 func light_blink():
 	switch_light()
