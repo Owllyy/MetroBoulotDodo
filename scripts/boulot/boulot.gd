@@ -19,6 +19,8 @@ var difficulty = 0
 var current_shoes : int = 0
 var quota : int = 5
 
+var life = 3
+
 func _ready() -> void:
 	start(GameManager.getDayCount())
 	trigame.show()
@@ -56,6 +58,11 @@ func setupTimer(timer_duration: float):
 
 func _on_timer_timeout():
 	gameFail()
+	
+func lose_life():
+	life -= 1
+	if (life <= 0):
+		gameFail()
 
 func gameFail():
 	GameManager.goToLooseScreen()

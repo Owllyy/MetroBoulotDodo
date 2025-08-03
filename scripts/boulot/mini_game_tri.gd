@@ -59,10 +59,14 @@ func _on_box_black_body_entered(body: Node2D) -> void:
 	if body.is_in_group("shoes") :
 		if body.shoe_color == 1:
 			boulot.update_score()
+		else:
+			boulot.lose_life()
 		body.queue_free()
 
 func _on_box_white_body_entered(body: Node2D) -> void:
 	if body.is_in_group("shoes") :
 		if body.shoe_color == 0:
 			boulot.update_score()
+		else:
+			boulot.lose_life()
 		body.queue_free()
