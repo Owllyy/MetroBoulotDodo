@@ -2,7 +2,7 @@ extends Node
 
 var difficulty = 1
 
-var NUMBER_OF_EVENT = 6;
+var NUMBER_OF_EVENT = 5;
 @export var game_zone: Area2D
 
 @export var spawner: Node2D
@@ -27,14 +27,14 @@ var NUMBER_OF_EVENT = 6;
 @export var character: CharacterBody2D
 
 @onready var event_timer: Timer = $Timer
-var EVENT_RYTHM: float = 6.0
+var EVENT_RYTHM: float = 5.5
 var EVENT_DURATION: float = 3.0
 var EVENT_PREPARE_DURATION: float = 1.5
 
 var help = false
 
-@export var PUSH_FORCE_MIN = 2500
-@export var PUSH_FORCE_MAX = 4200
+@export var PUSH_FORCE_MIN = 2700
+@export var PUSH_FORCE_MAX = 4300
 @export var ACCELERATION_DURATION: float = EVENT_DURATION * 0.8
 @export var DECELERATION_DURATION: float = EVENT_DURATION * 0.2
 var force = Vector2.ZERO
@@ -42,6 +42,7 @@ var push_back = Vector2.ZERO
 var current_tween: Tween
 var ambientSoundPlayer: AudioStreamPlayer2D
 var runningMetroPlayer: AudioStreamPlayer2D
+var alreadyLost := false
 
 @export var INVINCIBILITY_DURATION = 1.0
 var immunity = false
@@ -74,19 +75,19 @@ func do_event():
 		current_event_index += 1;
 
 func metro_right():
+	await get_tree().create_timer(EVENT_PREPARE_DURATION).timeout
 	if help:
 		arrow_right.visible = true
 		arrow_right.play("default")
-	await get_tree().create_timer(EVENT_PREPARE_DURATION).timeout
 	start_force_tween(Vector2.LEFT)
 	await get_tree().create_timer(EVENT_DURATION).timeout
 	arrow_right.visible = false
 	
 func metro_left():
+	await get_tree().create_timer(EVENT_PREPARE_DURATION).timeout
 	if help:
 		arrow_left.visible = true
 		arrow_left.play("default")
-	await get_tree().create_timer(EVENT_PREPARE_DURATION).timeout
 	start_force_tween(Vector2.RIGHT)
 	await get_tree().create_timer(EVENT_DURATION).timeout
 	arrow_left.visible = false
@@ -99,6 +100,9 @@ func metro_stop():
 	GameManager.playSFXOnce(ding)
 	GameManager.playSFXOnce(deccel, 0.3)
 	await get_tree().create_timer(EVENT_PREPARE_DURATION).timeout
+	if help:
+		arrow_down.visible = true
+		arrow_down.play("default")
 	start_force_tween(Vector2.UP)
 	event_timer.paused = true
 	await get_tree().create_timer(EVENT_DURATION).timeout
@@ -109,9 +113,6 @@ func metro_stop():
 	event_timer.paused = false
 
 func metro_start():
-	if help:
-		arrow_up.visible = true
-		arrow_up.play("default")
 	event_timer.paused = true
 	await get_tree().create_timer(EVENT_PREPARE_DURATION).timeout
 	event_timer.paused = false
@@ -135,18 +136,21 @@ func stopSounds():
 		ambientSoundPlayer.stop()
 
 func manage_difficulty():
-	difficulty = GameManager.getDayCount()
-	if difficulty < 2:
+	difficulty = 3#GameManager.getDayCount()
+	if difficulty <= 2:
 		help = true
 	if difficulty <= 5:
 		EVENT_RYTHM -= (difficulty * 0.5)
-	if difficulty >= 3:	
+	if difficulty >= 2 && difficulty <= 5:	
 		spawner.set_active()
-		spawner.set_cd(16 - (difficulty * 2))
+		spawner.set_cd(6 - difficulty)
 	PUSH_FORCE_MAX += (difficulty * 100)
 	PUSH_FORCE_MIN += (difficulty * 200)
 
 func end_game():
+	if alreadyLost:
+		return
+	
 	immunity = true
 	var fall_distance: float = 1600.0
 	var duration: float = 3.0 
@@ -205,8 +209,10 @@ func _on_game_space_body_exited(body: Node2D) -> void:
 	if body is Player:
 		if immunity == false:
 			if character.take_damage() == 1:
-				stopSounds()
-				GameManager.goToLooseScreen()
+				if not alreadyLost:
+					alreadyLost = true
+					stopSounds()
+					GameManager.goToLooseScreen()
 			else:
 				character.start_blink_effect()
 				immunity = true
@@ -228,8 +234,10 @@ func _on_game_space_body_exited(body: Node2D) -> void:
 func _on_character_body_2d_get_hit() -> void:
 	if immunity == false:
 		if character.take_damage() == 1:
-			stopSounds()
-			GameManager.goToLooseScreen()
+			if not alreadyLost:
+				alreadyLost = true
+				stopSounds()
+				GameManager.goToLooseScreen()
 		else:
 			character.start_blink_effect()
 			immunity = true
