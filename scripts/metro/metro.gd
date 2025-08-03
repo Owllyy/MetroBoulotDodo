@@ -1,9 +1,9 @@
 extends Node
 
-var difficulty = 0
+var difficulty = 1
 
-@export var wagon: Sprite2D
-@export var TILT_ANGLE: float = 10.0
+@export var wagon: AnimatedSprite2D
+@export var TILT_ANGLE: float = 7.0
 @export var camera: Camera2D
 @export var CAMERA_OFFSET: float = 60.0
 
@@ -15,14 +15,12 @@ var difficulty = 0
 @export var arrow_right: AnimatedSprite2D
 @export var arrow_down: AnimatedSprite2D
 @export var arrow_up: AnimatedSprite2D
-@export var stop: ColorRect
-@export var start: ColorRect
 @export var character: CharacterBody2D
 
 @onready var event_timer: Timer = $Timer
-@export var EVENT_RYTHM: float = 10.0
+var EVENT_RYTHM: float = 7.0
 @export var EVENT_DURATION: float = 3.0
-@export var EVENT_PREPARE_DURATION: float = 1.0
+@export var EVENT_PREPARE_DURATION: float = 1.5
 
 var help = false
 
@@ -85,34 +83,37 @@ func metro_stop():
 		arrow_down.visible = true
 		arrow_down.play("default")
 	ding.play()
-	stop.visible = true
 	await get_tree().create_timer(EVENT_PREPARE_DURATION).timeout
 	start_force_tween(Vector2.UP)
 	await get_tree().create_timer(EVENT_DURATION).timeout
-	stop.visible = false
 	arrow_down.visible = false
 	door_open.play()
+	await get_tree().create_timer(1.0).timeout
+	wagon.play("open")
 
 func metro_start():
 	if help:
 		arrow_up.visible = true
 		arrow_up.play("default")
+	event_timer.paused = true
+	await get_tree().create_timer(2.0).timeout
+	event_timer.paused = false
 	door_close.play()
-	start.visible = true
+	wagon.play("close")
 	await get_tree().create_timer(EVENT_PREPARE_DURATION).timeout
 	start_force_tween(Vector2.DOWN)
 	await get_tree().create_timer(EVENT_DURATION).timeout
-	start.visible = false
 	arrow_up.visible = false
 
 func _ready():
 	init_event_list()
-	EVENT_RYTHM -= difficulty
 	event_timer = Timer.new()
+	wagon.play("default")
 	add_child(event_timer)
 	event_timer.timeout.connect(do_event)
 	event_timer.one_shot = false
 	event_timer.start(EVENT_RYTHM);
+	EVENT_RYTHM -= (difficulty * 0.5)
 	if difficulty < 2:
 		help = true
 
@@ -135,14 +136,14 @@ func start_force_tween(direction: Vector2):
 		ACCELERATION_DURATION
 	).set_trans(Tween.TRANS_SINE)
 	current_tween.parallel().tween_property(
-	wagon, "rotation_degrees", target_rotation, ACCELERATION_DURATION
+	camera, "rotation_degrees", target_rotation, ACCELERATION_DURATION
 	).set_trans(Tween.TRANS_SINE)
 	current_tween.parallel().tween_property(camera, "offset", target_camera_offset, ACCELERATION_DURATION).set_trans(Tween.TRANS_SINE)
 	current_tween.chain().tween_property(
 		self, "force", Vector2.ZERO, DECELERATION_DURATION
 	).set_trans(Tween.TRANS_SINE)
 	current_tween.parallel().tween_property(
-		wagon, "rotation_degrees", 0.0, DECELERATION_DURATION
+		camera, "rotation_degrees", 0.0, DECELERATION_DURATION
 	).set_trans(Tween.TRANS_SINE)
 	current_tween.parallel().tween_property(camera, "offset", Vector2.ZERO, DECELERATION_DURATION).set_trans(Tween.TRANS_SINE)
 
