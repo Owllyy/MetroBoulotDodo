@@ -60,6 +60,9 @@ func _on_timer_timeout():
 	gameFail()
 	
 func lose_life():
+	$Camera2D/UI/BAD.show()
+	await get_tree().create_timer(0.2).timeout
+	$Camera2D/UI/BAD.hide()
 	life -= 1
 	if (life <= 0):
 		gameFail()
@@ -67,10 +70,6 @@ func lose_life():
 func gameFail():
 	GameManager.goToLooseScreen()
 	print("Game Failed - Time's up!")
-
-func set_difficulty(difficulty : int):
-	#on regarde le jour et on set
-	pass
 
 func light_blink():
 	switch_light()

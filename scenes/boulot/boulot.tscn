@@ -58,6 +58,15 @@ offset_bottom = 100.0
 grow_horizontal = 2
 texture = ExtResource("3_wqw1y")
 
+[node name="BAD" type="ColorRect" parent="Camera2D/UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.917647, 0, 0.113725, 0.533333)
+
 [node name="DarkOverlay" type="CanvasLayer" parent="Camera2D"]
 
 [node name="dark" type="ColorRect" parent="Camera2D/DarkOverlay"]
