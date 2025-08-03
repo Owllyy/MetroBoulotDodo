@@ -2,7 +2,8 @@ extends Node
 
 var difficulty = 1
 
-var NUMBER_OF_EVENT = 8;
+var NUMBER_OF_EVENT = 7;
+@export var game_zone: Area2D
 
 @export var spawner: Node2D
 @export var wagon: AnimatedSprite2D
@@ -24,8 +25,8 @@ var NUMBER_OF_EVENT = 8;
 
 @onready var event_timer: Timer = $Timer
 var EVENT_RYTHM: float = 6.0
-@export var EVENT_DURATION: float = 3.0
-@export var EVENT_PREPARE_DURATION: float = 1.5
+var EVENT_DURATION: float = 3.0
+var EVENT_PREPARE_DURATION: float = 1.5
 
 var help = false
 
@@ -93,27 +94,29 @@ func metro_stop():
 	deccel.play()
 	await get_tree().create_timer(EVENT_PREPARE_DURATION).timeout
 	start_force_tween(Vector2.UP)
+	event_timer.paused = true
 	await get_tree().create_timer(EVENT_DURATION).timeout
 	arrow_down.visible = false
 	door_open.play()
-	event_timer.paused = true
+	wagon.play("open")
 	await get_tree().create_timer(EVENT_PREPARE_DURATION).timeout
 	event_timer.paused = false
-	wagon.play("open")
 
 func metro_start():
 	if help:
 		arrow_up.visible = true
 		arrow_up.play("default")
 	event_timer.paused = true
-	door_close.play()
 	await get_tree().create_timer(EVENT_PREPARE_DURATION).timeout
 	event_timer.paused = false
 	accel.play()
+	door_close.play()
 	wagon.play("close")
 	await get_tree().create_timer(EVENT_PREPARE_DURATION).timeout
 	start_force_tween(Vector2.DOWN)
+	event_timer.paused = true
 	await get_tree().create_timer(EVENT_DURATION).timeout
+	event_timer.paused = false
 	arrow_up.visible = false
 
 func manage_difficulty():
@@ -179,8 +182,6 @@ func start_force_tween(direction: Vector2):
 	).set_trans(Tween.TRANS_SINE)
 	current_tween.parallel().tween_property(camera, "offset", Vector2.ZERO, DECELERATION_DURATION).set_trans(Tween.TRANS_SINE)
 
-
-
 func _on_game_space_body_exited(body: Node2D) -> void:
 	if body is Player:
 		if immunity == false:
@@ -192,9 +193,17 @@ func _on_game_space_body_exited(body: Node2D) -> void:
 				await get_tree().create_timer(INVINCIBILITY_DURATION).timeout
 				character.stop_blink_effect()
 				immunity = false
+			var bodies_in_zone = game_zone.get_overlapping_bodies()
+			var is_in_zone = false
+			for body_in in bodies_in_zone:
+				print("body")
+				if body_in is Player:
+					print("player")
+					is_in_zone = true
+			if is_in_zone == false:
+				_on_character_body_2d_get_hit()
 	elif body is Projectile:
 		body.queue_free()
-
 
 func _on_character_body_2d_get_hit() -> void:
 	if immunity == false:
@@ -206,3 +215,12 @@ func _on_character_body_2d_get_hit() -> void:
 			await get_tree().create_timer(INVINCIBILITY_DURATION).timeout
 			character.stop_blink_effect()
 			immunity = false
+			var bodies_in_zone = game_zone.get_overlapping_bodies()
+			var is_in_zone = false
+			for body_in in bodies_in_zone:
+				print("body")
+				if body_in is Player:
+					print("player")
+					is_in_zone = true
+			if is_in_zone == false:
+				_on_character_body_2d_get_hit()
