@@ -89,5 +89,5 @@ func _on_timer_timeout():
 	gameFail()
 
 func gameFail():
-	GameManager.goToNextStage()
+	GameManager.goToLooseScreen()
 	print("Game Failed - Time's up!")

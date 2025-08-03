@@ -43,3 +43,6 @@ func goToNextStage():
 
 func dbg_setDayCount(dayCount: int):
 	currentDay = dayCount
+
+func getCurrentGameLostTexture() -> Texture2D:
+	return stageLostTextures[currentStage]

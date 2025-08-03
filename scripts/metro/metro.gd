@@ -152,7 +152,7 @@ func start_force_tween(direction: Vector2):
 func _on_game_space_body_exited(body: Node2D) -> void:
 	if immunity == false:
 		if character.take_damage() == 1:
-			GameManager.goToNextStage()
+			GameManager.goToLooseScreen()
 		else:
 			character.start_blink_effect()
 			immunity = true
