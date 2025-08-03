@@ -12,7 +12,6 @@ extends Node2D
 var game_timer: Timer
 @onready var timerSlider = $TimerBar
 
-
 const color_dark = Color(0,0,0,0.5)
 const color_bright = Color(0,0,0,0)
 
