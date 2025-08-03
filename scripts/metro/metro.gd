@@ -2,7 +2,7 @@ extends Node
 
 var difficulty = 1
 
-var NUMBER_OF_EVENT = 7;
+var NUMBER_OF_EVENT = 6;
 @export var game_zone: Area2D
 
 @export var spawner: Node2D
@@ -127,7 +127,8 @@ func manage_difficulty():
 	if difficulty <= 5:
 		EVENT_RYTHM -= (difficulty * 0.5)
 	if difficulty >= 3:	
-		spawner.cd = 9 - difficulty
+		spawner.set_active()
+		spawner.set_cd(16 - (difficulty * 2))
 	PUSH_FORCE_MAX += (difficulty * 100)
 	PUSH_FORCE_MIN += (difficulty * 200)
 
