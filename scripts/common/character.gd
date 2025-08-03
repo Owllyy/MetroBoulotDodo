@@ -21,7 +21,7 @@ var external_force: Vector2 = Vector2.ZERO
 
 func _physics_process(delta: float):
 	if can_move:
-		var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		var direction = Input.get_vector("left", "right", "up", "down")
 		var sprint_pressed = false
 		SPEED = BASE_SPEED
 		if Input.is_key_pressed(KEY_SHIFT):
