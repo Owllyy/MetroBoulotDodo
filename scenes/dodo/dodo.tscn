@@ -164,10 +164,10 @@ polygon = PackedVector2Array(-360, 99, -212, -165, -18, -203, 219, -177, 552, -1
 
 [node name="TimerBar" type="ProgressBar" parent="."]
 custom_minimum_size = Vector2(300, 0)
-offset_left = 833.0
-offset_top = 508.0
-offset_right = 933.0
-offset_bottom = 535.0
+offset_left = 21.0
+offset_top = 15.0
+offset_right = 321.0
+offset_bottom = 42.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_dy05f")
 max_value = 30.0
 show_percentage = false
