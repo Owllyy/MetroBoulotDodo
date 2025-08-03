@@ -70,6 +70,10 @@ corner_radius_bottom_left = 8
 [node name="Dodo" type="Node2D"]
 script = ExtResource("1_ijlwg")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(3000, 3000)
+color = Color(0.560955, 0.560955, 0.560955, 1)
+
 [node name="enclosure" type="StaticBody2D" parent="."]
 
 [node name="barrier0" type="CollisionShape2D" parent="enclosure"]
