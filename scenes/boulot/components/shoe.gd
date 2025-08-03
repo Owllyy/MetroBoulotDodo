@@ -11,6 +11,12 @@ static var current_dragged: CharacterBody2D = null
 func _process(delta: float) -> void:
 	if is_dragging:
 		global_position = get_global_mouse_position()
+	if GameManager.is_dark == true:
+		#modulate pour mettre en noir
+		pass
+	else:
+		#remettre le sprite en normal
+		pass
 		
 func _unhandled_input(event):
 	# Si on clique sur ce collider (via input_event), on commence à drag
