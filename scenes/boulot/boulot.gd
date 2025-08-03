@@ -7,8 +7,6 @@ extends Node2D
 
 @onready var score_text = $Score
 
-var is_dark : bool = false
-
 var difficulty = 0
 var current_shoes : int = 0
 var quota : int = 5
