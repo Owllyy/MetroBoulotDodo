@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="MetroBoulotDodo_GMTK_2025"
-run/main_scene="uid://4kkpvhifi881"
+run/main_scene="uid://d3xvbx7rc0157"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
+Global="*res://scripts/global.gd"
 GameManager="*res://scenes/persistent.tscn"
 Globals="*res://scripts/globals.gd"
 

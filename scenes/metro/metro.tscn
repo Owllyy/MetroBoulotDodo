@@ -1,15 +1,56 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3xvbx7rc0157"]
+[gd_scene load_steps=16 format=3 uid="uid://d3xvbx7rc0157"]
 
 [ext_resource type="Script" uid="uid://c6xnha4tqygq2" path="res://scripts/metro/metro.gd" id="1_rnm2g"]
 [ext_resource type="Texture2D" uid="uid://cafrk7n8iwh7o" path="res://assets/metro/metro.png" id="2_3b0xe"]
 [ext_resource type="PackedScene" uid="uid://b73vwuiajjkax" path="res://scenes/common/character.tscn" id="2_r7db7"]
+[ext_resource type="Texture2D" uid="uid://bcxwaqssav24o" path="res://assets/metro/metro_open_2.png" id="2_rgygg"]
 [ext_resource type="Texture2D" uid="uid://cwyelyw55fo7g" path="res://assets/metro/people.png" id="3_m6644"]
+[ext_resource type="Texture2D" uid="uid://u8qt86khb0lx" path="res://assets/metro/metro_open_1.png" id="3_v6lye"]
 [ext_resource type="Texture2D" uid="uid://dgm52wfelf01x" path="res://assets/metro/ui/arrow.png" id="4_oi6tm"]
 [ext_resource type="Texture2D" uid="uid://dok5rbkm4y31v" path="res://assets/metro/ui/arrow_pressed.png" id="5_oi6tm"]
 [ext_resource type="AudioStream" uid="uid://c7hqgm4glahrb" path="res://assets/metro/sound/ding.wav" id="6_yom83"]
 [ext_resource type="AudioStream" uid="uid://7uph8s0un2u1" path="res://assets/metro/sound/door_open.wav" id="7_3b0xe"]
 [ext_resource type="AudioStream" uid="uid://bgvn0e2twpjwe" path="res://assets/metro/sound/background.mp3" id="7_m6644"]
 [ext_resource type="AudioStream" uid="uid://bhahcfnxdaplv" path="res://assets/metro/sound/door_close.wav" id="8_m6644"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_clmum"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("2_rgygg")
+}, {
+"duration": 3.0,
+"texture": ExtResource("3_v6lye")
+}, {
+"duration": 4.0,
+"texture": ExtResource("2_3b0xe")
+}],
+"loop": false,
+"name": &"close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3b0xe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("2_3b0xe")
+}, {
+"duration": 3.0,
+"texture": ExtResource("3_v6lye")
+}, {
+"duration": 3.0,
+"texture": ExtResource("2_rgygg")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oi6tm"]
 radius = 169.012
@@ -28,7 +69,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Metro" type="Node2D" node_paths=PackedStringArray("wagon", "camera", "ding", "door_open", "door_close", "arrow_left", "arrow_right", "arrow_down", "arrow_up", "stop", "start", "character")]
+[node name="Metro" type="Node2D" node_paths=PackedStringArray("wagon", "camera", "ding", "door_open", "door_close", "arrow_left", "arrow_right", "arrow_down", "arrow_up", "character")]
 script = ExtResource("1_rnm2g")
 wagon = NodePath("wagon")
 camera = NodePath("Camera2D")
@@ -39,11 +80,10 @@ arrow_left = NodePath("arrow_left")
 arrow_right = NodePath("arrow_right")
 arrow_down = NodePath("arrow_down")
 arrow_up = NodePath("arrow_up")
-stop = NodePath("stop")
-start = NodePath("start")
 character = NodePath("CharacterBody2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+ignore_rotation = false
 zoom = Vector2(1.2, 1.2)
 
 [node name="Background" type="ColorRect" parent="."]
@@ -53,34 +93,27 @@ offset_right = 743.0
 offset_bottom = 1944.0
 color = Color(0.0687983, 0.0687983, 0.0687983, 1)
 
-[node name="wagon" type="Sprite2D" parent="."]
+[node name="wagon" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2.73322, 220.873)
 scale = Vector2(1.12698, 1.1123)
-texture = ExtResource("2_3b0xe")
+sprite_frames = SubResource("SpriteFrames_clmum")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-2.73322, 220.873)
+[node name="people_back" type="Sprite2D" parent="."]
+position = Vector2(6, -200)
 scale = Vector2(1.12698, 1.1123)
 texture = ExtResource("3_m6644")
+region_enabled = true
+region_rect = Rect2(0, 0, 1280, 511.851)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_r7db7")]
 BASE_SPEED = 400.0
 
-[node name="stop" type="ColorRect" parent="."]
-visible = false
-offset_left = -73.0
-offset_top = -221.0
-offset_right = 71.0
-offset_bottom = -192.0
-color = Color(1, 0.09256, 0.0415727, 1)
-
-[node name="start" type="ColorRect" parent="."]
-visible = false
-offset_left = -73.0
-offset_top = -221.0
-offset_right = 71.0
-offset_bottom = -192.0
-color = Color(0.751551, 0.467117, 0.0930515, 1)
+[node name="people" type="Sprite2D" parent="."]
+position = Vector2(3, 509)
+scale = Vector2(1.12698, 1.1123)
+texture = ExtResource("3_m6644")
+region_enabled = true
+region_rect = Rect2(0, 511.851, 1280, 768.149)
 
 [node name="game_space" type="Area2D" parent="."]
 
@@ -130,7 +163,7 @@ autoplay = true
 
 [node name="arrow_right" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(224, -1)
+position = Vector2(227, -1)
 rotation = 3.14159
 scale = Vector2(0.5, -0.5)
 sprite_frames = SubResource("SpriteFrames_062a6")
@@ -139,7 +172,7 @@ speed_scale = 0.7
 
 [node name="arrow_left" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(-223, 1)
+position = Vector2(-221, 1)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_062a6")
 frame_progress = 0.87986
@@ -163,4 +196,5 @@ sprite_frames = SubResource("SpriteFrames_062a6")
 frame_progress = 0.535918
 speed_scale = 0.7
 
+[connection signal="animation_finished" from="wagon" to="." method="_on_wagon_animation_finished"]
 [connection signal="body_exited" from="game_space" to="." method="_on_game_space_body_exited"]
