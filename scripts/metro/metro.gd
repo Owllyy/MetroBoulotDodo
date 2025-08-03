@@ -120,8 +120,7 @@ func metro_start():
 	arrow_up.visible = false
 
 func manage_difficulty():
-	#difficulty = GameManager.getDayCount()
-	difficulty = 5
+	difficulty = GameManager.getDayCount()
 	if difficulty < 2:
 		help = true
 	if difficulty <= 5:
