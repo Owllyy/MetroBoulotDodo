@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cf7sqmfjnnv4g"]
+[gd_scene load_steps=9 format=3 uid="uid://cf7sqmfjnnv4g"]
 
 [ext_resource type="Script" uid="uid://bssa0rn1tnlge" path="res://scripts/boulot/boulot.gd" id="1_wqw1y"]
+[ext_resource type="AudioStream" uid="uid://0bxbln7j14q7" path="res://assets/boulot/boulot_music.mp3" id="2_xivms"]
 [ext_resource type="Texture2D" uid="uid://chmmamo8crmok" path="res://assets/boulot/usinetapisfinal.png" id="3_5k82q"]
-[ext_resource type="Script" uid="uid://cn8k5kh7oe3og" path="res://scripts/boulot/mini_game_tri.gd" id="6_lssby"]
+[ext_resource type="Script" path="res://scripts/boulot/mini_game_tri.gd" id="6_lssby"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dioeo"]
 size = Vector2(264, 220)
@@ -21,6 +22,7 @@ corner_radius_bottom_left = 8
 
 [node name="Boulot" type="Node2D"]
 script = ExtResource("1_wqw1y")
+music = ExtResource("2_xivms")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

@@ -1,5 +1,6 @@
 extends Node
 
+@export var music: AudioStream
 @export var SheepScene : PackedScene = preload("res://scenes/dodo/sheep.tscn")
 @onready var spawn_area = $SpawnArea
 var random = RandomNumberGenerator.new()
@@ -7,11 +8,11 @@ var minSheepSpeed : int = 20
 var game_timer: Timer
 @onready var timerSlider: ProgressBar = $TimerBar
 
-
 func _ready() -> void:
 	random.randomize()
 	
 	start(GameManager.getDayCount())
+	GameManager.playMusic(music)
 
 func start(iteration: int):
 	var sheepsToSpawn = iteration * 3

@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://gcmy85wqs0x1"]
+[gd_scene load_steps=23 format=3 uid="uid://gcmy85wqs0x1"]
 
 [ext_resource type="Script" uid="uid://c0xuatv3qoe6w" path="res://scripts/dodo/dodoManager.gd" id="1_ijlwg"]
 [ext_resource type="Script" uid="uid://b4fxs1nj1plh" path="res://scripts/dodo/cursor.gd" id="2_dy05f"]
+[ext_resource type="AudioStream" uid="uid://74831koxuwap" path="res://assets/dodo/dodo_music.mp3" id="2_xek7a"]
 [ext_resource type="Texture2D" uid="uid://cacbd8mmkfrmp" path="res://assets/dodo/lasso.png" id="3_ijlwg"]
 [ext_resource type="AudioStream" uid="uid://wlyqdf7vcjp1" path="res://assets/dodo/cut.wav" id="4_0kxj8"]
 [ext_resource type="Texture2D" uid="uid://bx503eo3j2jfa" path="res://assets/dodo/enclosure.png" id="4_ijlwg"]
@@ -71,6 +72,7 @@ corner_radius_bottom_left = 8
 
 [node name="Dodo" type="Node2D"]
 script = ExtResource("1_ijlwg")
+music = ExtResource("2_xek7a")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(3000, 3000)
