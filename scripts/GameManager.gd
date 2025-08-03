@@ -19,7 +19,7 @@ func _ready() -> void:
 			break
 
 # start at 1
-func getDayCount() -> float:
+func getDayCount() -> int:
 	return currentDay
 
 func goToLooseScreen():
