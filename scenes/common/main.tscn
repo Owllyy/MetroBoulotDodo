@@ -1,53 +1,76 @@
-[gd_scene load_steps=6 format=3 uid="uid://4kkpvhifi881"]
+[gd_scene load_steps=10 format=3 uid="uid://4kkpvhifi881"]
 
 [ext_resource type="Script" uid="uid://dc5170xyds48g" path="res://scripts/common/mainMenu.gd" id="1_1bltu"]
-[ext_resource type="Theme" uid="uid://bpcln3x4i8if6" path="res://assets/common/mainMenu.tres" id="1_kuhtq"]
+[ext_resource type="Texture2D" uid="uid://jttgffsi34eg" path="res://assets/common/menu.png" id="2_4ddm4"]
 [ext_resource type="Theme" uid="uid://dlukdkpy0mpss" path="res://assets/common/mainSettings.tres" id="2_c7yu4"]
 [ext_resource type="Script" uid="uid://bdl6rtb8waxmm" path="res://scripts/common/settings_menu.gd" id="3_hnixr"]
 [ext_resource type="Script" uid="uid://3gjsgqdeg42p" path="res://scripts/common/assign_key_button.gd" id="4_hnixr"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmut3"]
+bg_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ddm4"]
+bg_color = Color(0.6, 0.6, 0.6, 0.152941)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4dbv"]
+bg_color = Color(0.6, 0.6, 0.6, 0.223529)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hnixr"]
+bg_color = Color(0, 0, 0, 0)
+
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_1bltu")
+metadata/_edit_vertical_guides_ = [1210.0]
 
-[node name="Play" type="Button" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -84.0
-offset_top = -15.5
-offset_right = 84.0
-offset_bottom = 15.5
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = "Start a new boring day"
+texture = ExtResource("2_4ddm4")
 
-[node name="Quit" type="Button" parent="."]
+[node name="Play" type="Button" parent="."]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -10.0
-offset_bottom = -10.0
+offset_left = -334.0
+offset_top = -130.0
+offset_right = -70.0
+offset_bottom = -33.0
 grow_horizontal = 0
 grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/focus = SubResource("StyleBoxFlat_xmut3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4ddm4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_g4dbv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_hnixr")
+
+[node name="Quit" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -117.0
+offset_top = 20.0
+offset_right = -70.0
+offset_bottom = 51.0
+grow_horizontal = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "QUIT"
 
 [node name="SettingsButton" type="Button" parent="."]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = -41.0
-offset_right = 92.0
-offset_bottom = -10.0
-grow_vertical = 0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -222.0
+offset_top = 20.0
+offset_right = -140.0
+offset_bottom = 51.0
+grow_horizontal = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "SETTINGS"
@@ -78,7 +101,7 @@ offset_right = 200.0
 offset_bottom = 190.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_kuhtq")
+theme = ExtResource("2_c7yu4")
 
 [node name="MarginContainer" type="MarginContainer" parent="SettingsMenu/SettingsPopup"]
 layout_mode = 2
