@@ -1,6 +1,5 @@
-[gd_scene load_steps=17 format=3 uid="uid://e3miiu2pgoir"]
+[gd_scene load_steps=21 format=3 uid="uid://e3miiu2pgoir"]
 
-[ext_resource type="Texture2D" uid="uid://jo4nj5nr34rk" path="res://assets/dodo/icon.svg" id="1_0mqg2"]
 [ext_resource type="Script" uid="uid://k413mijsha8v" path="res://scripts/dodo/sheep.gd" id="1_cql80"]
 [ext_resource type="AudioStream" uid="uid://c0wi6mgybto50" path="res://assets/dodo/sheepFootsteps/Bruit de pas dans l'herbe 1.wav" id="2_h1q58"]
 [ext_resource type="AudioStream" uid="uid://5ilgvupisjqu" path="res://assets/dodo/sheepFootsteps/Bruit de pas dans l'herbe 2.wav" id="3_q8men"]
@@ -15,9 +14,44 @@
 [ext_resource type="AudioStream" uid="uid://dfftcwo2ddwta" path="res://assets/dodo/sheepCry/Mouton 4 pixel (boost).wav" id="12_o8d1v"]
 [ext_resource type="AudioStream" uid="uid://bryil8o2v5w7c" path="res://assets/dodo/sheepCry/Mouton 5 pixel.wav" id="13_3ys8r"]
 [ext_resource type="AudioStream" uid="uid://cdl8quvrx2tom" path="res://assets/dodo/sheepCry/Mouton 6 pixel (gras).wav" id="14_1sguu"]
+[ext_resource type="Texture2D" uid="uid://dnwytu24hax0n" path="res://assets/dodo/sheep1.png" id="15_he6ji"]
+[ext_resource type="Texture2D" uid="uid://bq7rcmcd5qprm" path="res://assets/dodo/sheep2.png" id="16_o8d1v"]
+[ext_resource type="Texture2D" uid="uid://d2i3ar3mnwrvq" path="res://assets/dodo/sheep3.png" id="17_3ys8r"]
+[ext_resource type="Texture2D" uid="uid://c2bl3nf5h84lr" path="res://assets/dodo/sheep4.png" id="18_1sguu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wqo72"]
 size = Vector2(50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1xala"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": ExtResource("15_he6ji")
+}, {
+"duration": 2.0,
+"texture": ExtResource("16_o8d1v")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.8,
+"texture": ExtResource("15_he6ji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_3ys8r")
+}, {
+"duration": 0.2,
+"texture": ExtResource("16_o8d1v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_1sguu")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [node name="Sheep" type="CharacterBody2D"]
 script = ExtResource("1_cql80")
@@ -28,8 +62,9 @@ cry = Array[AudioStream]([ExtResource("9_he6ji"), ExtResource("10_cjif3"), ExtRe
 shape = SubResource("RectangleShape2D_wqo72")
 
 [node name="sprite" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("1_0mqg2")
+texture = ExtResource("15_he6ji")
 
 [node name="Sheep" type="Node2D" parent="."]
 
@@ -39,3 +74,8 @@ max_polyphony = 5
 [node name="CryAudioPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_1sguu")
 max_polyphony = 5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1xala")
+animation = &"walk"
+frame_progress = 0.755175

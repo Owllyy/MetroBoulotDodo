@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://gcmy85wqs0x1"]
+[gd_scene load_steps=20 format=3 uid="uid://gcmy85wqs0x1"]
 
 [ext_resource type="Script" uid="uid://c0xuatv3qoe6w" path="res://scripts/dodo/dodoManager.gd" id="1_ijlwg"]
-[ext_resource type="Texture2D" uid="uid://hpyqsnkeypdl" path="res://icon.svg" id="2_65jhe"]
 [ext_resource type="Script" uid="uid://b4fxs1nj1plh" path="res://scripts/dodo/cursor.gd" id="2_dy05f"]
+[ext_resource type="Texture2D" uid="uid://cacbd8mmkfrmp" path="res://assets/dodo/lasso.png" id="3_ijlwg"]
+[ext_resource type="Texture2D" uid="uid://bx503eo3j2jfa" path="res://assets/dodo/enclosure.png" id="4_ijlwg"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_65jhe"]
 a = Vector2(471, 52)
@@ -69,6 +70,10 @@ corner_radius_bottom_left = 8
 [node name="Dodo" type="Node2D"]
 script = ExtResource("1_ijlwg")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(3000, 3000)
+color = Color(0.560955, 0.560955, 0.560955, 1)
+
 [node name="enclosure" type="StaticBody2D" parent="."]
 
 [node name="barrier0" type="CollisionShape2D" parent="enclosure"]
@@ -124,6 +129,7 @@ shape = SubResource("SegmentShape2D_85jh4")
 debug_color = Color(0, 0.6, 0.701961, 0.533333)
 
 [node name="Line2D" type="Line2D" parent="enclosure"]
+visible = false
 position = Vector2(0, -1)
 points = PackedVector2Array(242, 109, 471, 52, 752, 73, 1116, 153, 1191, 313, 1148, 417, 976, 463, 786, 477, 628, 592, 420, 614, 176, 580, 60, 438, 123, 295, 242, 109)
 
@@ -137,8 +143,8 @@ maxPoints = 75
 distanceBetweenPoints = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="Cursor"]
-scale = Vector2(0.195312, 0.195312)
-texture = ExtResource("2_65jhe")
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_ijlwg")
 
 [node name="Trail" type="Line2D" parent="."]
 width_curve = SubResource("Curve_dy05f")
@@ -161,3 +167,7 @@ offset_bottom = 535.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_dy05f")
 max_value = 30.0
 show_percentage = false
+
+[node name="Enclosure" type="Sprite2D" parent="."]
+position = Vector2(638, 352)
+texture = ExtResource("4_ijlwg")
