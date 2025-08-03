@@ -5,7 +5,8 @@ const shoe_black_texture = preload("res://assets/boulot/shoe_black.png")
 const SHOE_SCENE = preload("res://scenes/boulot/components/shoe.tscn")
 
 @onready var spawn_area = $shoe_spawn_area/area
-@onready var spawn_timer = $Timer
+@onready var spawn_timer = $SpawnTimer
+@onready var boulot = $".."
 
 var shoe_speed = 100.0
 
@@ -39,7 +40,7 @@ func spawn_shoe(color):
 		shoe_instance.sprite.texture = shoe_white_texture
 	else:
 		shoe_instance.sprite.texture = shoe_black_texture
-	shoe_instance.color = color
+	shoe_instance.shoe_color = color
 
 func _process(delta):
 	for shoe in get_tree().get_nodes_in_group("shoes"):
@@ -47,7 +48,18 @@ func _process(delta):
 		shoe.position += velocity * delta
 
 func _on_shoe_despawn_body_entered(body: Node2D) -> void:
-	print(body)
 	if body.is_in_group("shoes") :
-		print("bye bye")
+		body.queue_free()
+
+# 0 = white, 1 = black
+func _on_box_black_body_entered(body: Node2D) -> void:
+	if body.is_in_group("shoes") :
+		if body.shoe_color == 1:
+			boulot.update_score()
+		body.queue_free()
+
+func _on_box_white_body_entered(body: Node2D) -> void:
+	if body.is_in_group("shoes") :
+		if body.shoe_color == 0:
+			boulot.update_score()
 		body.queue_free()
