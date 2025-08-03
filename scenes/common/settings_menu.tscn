@@ -1,0 +1,361 @@
+[gd_scene load_steps=4 format=3 uid="uid://qxbew036jj7d"]
+
+[ext_resource type="Script" uid="uid://bdl6rtb8waxmm" path="res://scripts/common/settings_menu.gd" id="1_a4boi"]
+[ext_resource type="Theme" uid="uid://dlukdkpy0mpss" path="res://assets/common/mainSettings.tres" id="2_m0hw1"]
+[ext_resource type="Script" uid="uid://3gjsgqdeg42p" path="res://scripts/common/assign_key_button.gd" id="3_5olrx"]
+
+[node name="SettingsMenu" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_a4boi")
+
+[node name="SettingsPopup" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(400, 360)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -180.0
+offset_right = 200.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_m0hw1")
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsPopup"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SettingsPopup/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsPopup/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 10
+
+[node name="Panel" type="VBoxContainer" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Settings" type="Label" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
+layout_mode = 2
+text = "Settings"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Space" type="Control" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="AudioLabel" type="Label" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
+layout_mode = 2
+text = "Audio"
+
+[node name="Music" type="Control" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="MusicLabel" type="Label" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Music"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_vertical = 2
+size_flags_horizontal = 2
+text = "Music"
+
+[node name="MusicValue" type="HSlider" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Music"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+max_value = 1.5
+step = 0.05
+value = 1.0
+
+[node name="Effects" type="Control" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="EffectsLabel" type="Label" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Effects"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_vertical = 2
+size_flags_horizontal = 2
+text = "Effects"
+
+[node name="EffectsValue" type="HSlider" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Effects"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.6
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+max_value = 1.5
+step = 0.05
+value = 1.0
+
+[node name="Space2" type="Control" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="Controls" type="Label" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
+layout_mode = 2
+text = "Controls"
+
+[node name="Interact" type="Control" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="InteractLabel" type="Label" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Interact"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_vertical = 2
+size_flags_horizontal = 2
+text = "Interact"
+
+[node name="InteractValue" type="Button" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Interact"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -11.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+theme = ExtResource("2_m0hw1")
+text = "[key]"
+script = ExtResource("3_5olrx")
+action = "interact"
+
+[node name="Up" type="Control" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="UpLabel" type="Label" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Up"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_vertical = 2
+size_flags_horizontal = 2
+text = "Up"
+
+[node name="UpValue" type="Button" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Up"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -11.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+theme = ExtResource("2_m0hw1")
+text = "[key]"
+script = ExtResource("3_5olrx")
+action = "up"
+
+[node name="Down" type="Control" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="DownLabel" type="Label" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Down"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_vertical = 2
+size_flags_horizontal = 2
+text = "Down"
+
+[node name="UpValue" type="Button" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Down"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -11.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+theme = ExtResource("2_m0hw1")
+text = "[key]"
+script = ExtResource("3_5olrx")
+action = "down"
+
+[node name="Left" type="Control" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="LeftLabel" type="Label" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Left"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_vertical = 2
+size_flags_horizontal = 2
+text = "Left"
+
+[node name="LeftValue" type="Button" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Left"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -11.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+theme = ExtResource("2_m0hw1")
+text = "[key]"
+script = ExtResource("3_5olrx")
+action = "left"
+
+[node name="Right" type="Control" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="RightLabel" type="Label" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Right"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_vertical = 2
+size_flags_horizontal = 2
+text = "Right"
+
+[node name="RightValue" type="Button" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Right"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -11.0
+offset_bottom = 11.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+theme = ExtResource("2_m0hw1")
+text = "[key]"
+script = ExtResource("3_5olrx")
+action = "right"
+
+[node name="Space3" type="Control" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
+layout_mode = 2
+
+[node name="Space4" type="Control" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="Credits" type="Label" parent="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 10
+text = "Made with ❤️ by
+
+Flysem
+LeonMauriceMan
+Lucas Bourret
+Rebz
+Simon Cros"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="SettingsPopup/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="CloseSettings" type="Button" parent="SettingsPopup/MarginContainer/Control"]
+layout_mode = 0
+offset_left = -40.0
+offset_top = -58.0
+offset_right = 10.0
+offset_bottom = -27.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Close"
+
+[connection signal="value_changed" from="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Music/MusicValue" to="." method="_on_music_value_value_changed"]
+[connection signal="value_changed" from="SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel/Effects/EffectsValue" to="." method="_on_effects_value_value_changed"]
+[connection signal="pressed" from="SettingsPopup/MarginContainer/Control/CloseSettings" to="." method="_on_close_settings_pressed"]

@@ -11,6 +11,7 @@ var NUMBER_OF_EVENT = 6;
 @export var camera: Camera2D
 @export var CAMERA_OFFSET: float = 60.0
 
+@export var music: AudioStream
 @export var ding: AudioStreamPlayer2D
 @export var door_open: AudioStreamPlayer2D
 @export var door_close: AudioStreamPlayer2D
