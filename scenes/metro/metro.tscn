@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://d3xvbx7rc0157"]
+[gd_scene load_steps=21 format=3 uid="uid://d3xvbx7rc0157"]
 
 [ext_resource type="Script" uid="uid://c6xnha4tqygq2" path="res://scripts/metro/metro.gd" id="1_rnm2g"]
 [ext_resource type="Texture2D" uid="uid://cafrk7n8iwh7o" path="res://assets/metro/metro.png" id="2_3b0xe"]
+[ext_resource type="AudioStream" uid="uid://bmx1ol3veow5p" path="res://assets/metro/metro_music.mp3" id="2_b4uob"]
 [ext_resource type="PackedScene" uid="uid://b73vwuiajjkax" path="res://scenes/common/character.tscn" id="2_r7db7"]
 [ext_resource type="Texture2D" uid="uid://bcxwaqssav24o" path="res://assets/metro/metro_open_2.png" id="2_rgygg"]
 [ext_resource type="Texture2D" uid="uid://cwyelyw55fo7g" path="res://assets/metro/people.png" id="3_m6644"]
@@ -78,6 +79,7 @@ script = ExtResource("1_rnm2g")
 spawner = NodePath("game_space/Spawner")
 wagon = NodePath("wagon")
 camera = NodePath("Camera2D")
+music = ExtResource("2_b4uob")
 ding = NodePath("Sound/ding")
 door_open = NodePath("Sound/door_open")
 door_close = NodePath("Sound/door_close")

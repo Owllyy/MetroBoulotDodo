@@ -46,3 +46,19 @@ func dbg_setDayCount(dayCount: int):
 
 func getCurrentGameLostTexture() -> Texture2D:
 	return stageLostTextures[currentStage]
+
+func playMusic(stream: AudioStream):
+	$MusicPlayer.stream = stream
+	$MusicPlayer.play()
+
+func playSFX(stream: AudioStream):
+	$SFXPlayer.stream = stream
+	$SFXPlayer.play()
+
+func setMusicVolume(volume: float):
+	Globals.music_volume = volume
+	$MusicPlayer.volume_db = linear_to_db(volume)
+
+func setSFXVolume(volume: float):
+	Globals.sfx_volume = volume
+	$SFXPlayer.volume_db = linear_to_db(volume)
