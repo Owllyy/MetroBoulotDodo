@@ -52,15 +52,17 @@ func playMusic(stream: AudioStream):
 	$MusicPlayer.play()
 
 func playSFX(stream: AudioStream):
-	$SFXPlayer.stream = stream
-	$SFXPlayer.play()
+	if not $SFXPlayer.playing:
+		$SFXPlayer.stream = stream
+		$SFXPlayer.play()
 
 func playSFXOnce(stream: AudioStream):
 	var player = AudioStreamPlayer2D.new()
 	player.volume_db = linear_to_db(Globals.sfx_volume)
+	player.stream = stream
 	add_child(player)
-	player.play();
 	player.finished.connect(_on_player_finished.bind(player))
+	player.play()
 
 func setMusicVolume(volume: float):
 	Globals.music_volume = volume

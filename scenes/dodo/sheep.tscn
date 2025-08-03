@@ -69,13 +69,6 @@ texture = ExtResource("15_he6ji")
 
 [node name="Sheep" type="Node2D" parent="."]
 
-[node name="FootstepsAudioPlayer" type="AudioStreamPlayer2D" parent="."]
-max_polyphony = 5
-
-[node name="CryAudioPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("14_1sguu")
-max_polyphony = 5
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1xala")
 animation = &"walk"

@@ -22,8 +22,6 @@ var state_change_time: float = 0.0
 
 @export var footsteps: Array[AudioStream]
 @export var cry: Array[AudioStream]
-@onready var FootstepsAudioPlayer: AudioStreamPlayer2D = $FootstepsAudioPlayer
-@onready var CryAudioPlayer: AudioStreamPlayer2D = $CryAudioPlayer
 @onready var AnimatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready():
@@ -95,28 +93,24 @@ func onCollision(collision: KinematicCollision2D):
 	direction = direction.bounce(collision.get_normal())
 
 func playFootstepSound():
-	if FootstepsAudioPlayer and footsteps.size() > 0:
+	if footsteps.size() > 0:
 		# Pick a random footstep sound from the array
 		var random_footstep = footsteps[random.randi() % footsteps.size()]
-		FootstepsAudioPlayer.stream = random_footstep
-		FootstepsAudioPlayer.play()
+		GameManager.playSFXOnce(random_footstep)
 
 func catch():
 	z_index = 100
 	setState(State.IDLE)
 	direction = Vector2.ZERO
 	footstep_timer = 0.0
-	FootstepsAudioPlayer.stop()
 	set_collision_layer_value(1, false)
 	set_collision_layer_value(2, false)
 	set_collision_mask_value(1, false)
 	set_collision_mask_value(2, false)
-	if CryAudioPlayer and cry.size() > 0:
+	if cry.size() > 0:
 		# Pick a random cry sound from the array
 		var random_cry = cry[random.randi() % cry.size()]
-		CryAudioPlayer.stream = random_cry
-		print("Play sound")
-		CryAudioPlayer.play()
+		GameManager.playSFXOnce(random_cry)
 	
 	var tween = create_tween()
 	tween.set_parallel(true)  # Allow multiple animations to run simultaneously
@@ -140,8 +134,6 @@ func catch():
 	
 	# Wait for both the cry sound and animation to finish
 	var tasks = []
-	if CryAudioPlayer.is_playing():
-		tasks.append(CryAudioPlayer.finished)
 	tasks.append(tween.finished)
 	
 	# Wait for whichever takes longer

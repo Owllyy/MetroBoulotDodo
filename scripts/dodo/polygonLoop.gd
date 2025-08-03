@@ -4,23 +4,17 @@ extends Node2D
 var visualPolygon: Polygon2D
 var detectionArea: Area2D
 var collisionPolygon: CollisionPolygon2D
-var audioPlayer: AudioStreamPlayer2D
 
 var loopSound: AudioStream = preload("res://assets/dodo/loop.wav")
 
 var tween : Tween
 
 func _init(points: PackedVector2Array):
-	createAudioPlayer()
 	createPolygon(points)
 	createDetectionArea(points)
 
 func _ready():
 	flashPolygon()
-
-func createAudioPlayer():
-	audioPlayer = AudioStreamPlayer2D.new()
-	add_child(audioPlayer)
 
 func createPolygon(points: PackedVector2Array):
 	visualPolygon = Polygon2D.new()
@@ -41,10 +35,8 @@ func createDetectionArea(points: PackedVector2Array):
 	detectionArea.body_entered.connect(_on_body_entered)
 
 func flashPolygon():
-	if audioPlayer and loopSound:
-		audioPlayer.stream = loopSound
-		print("Sound Played")
-		audioPlayer.play()
+	if loopSound:
+		GameManager.playSFXOnce(loopSound)
 
 	tween = create_tween()
 	tween.set_loops(2)
@@ -66,9 +58,5 @@ func hideAndCleanupVisuals():
 	if visualPolygon:
 		tween.stop()
 		visualPolygon.queue_free()
-	
-	# Wait for audio to finish, then cleanup the entire node
-	if audioPlayer and audioPlayer.is_playing():
-		await audioPlayer.finished
 	
 	queue_free() 
