@@ -1,18 +1,32 @@
 extends Node
 
 @export var stagesPerDay : Array[PackedScene] = []
-@export var gameLostTextures : Array[Texture2D] = []
+@export var stageLostScreen : PackedScene
+@export var stageLostTextures : Array[Texture2D] = []
 
 var isStarted := false
 var currentDay := 1
 var currentStage := 0
 
 func _ready() -> void:
-	assert(stagesPerDay.size() == gameLostTextures.size(), "Must have one game lost texture per stage")
+	assert(stagesPerDay.size() == stageLostTextures.size(), "Must have one game lost texture per stage")
+	
+	for i in range(0, stagesPerDay.size()):
+		print(stagesPerDay[i].resource_path + " " + get_tree().current_scene.scene_file_path)
+		if stagesPerDay[i].resource_path == get_tree().current_scene.scene_file_path:
+			isStarted = true
+			currentStage = i
+			break
 
 # start at 1
 func getDayCount() -> float:
 	return currentDay
+
+func goToLooseScreen():
+	assert(isStarted)
+	assert(stageLostScreen != null)
+	
+	get_tree().change_scene_to_packed(stageLostScreen)
 
 func goToNextStage():
 	assert(!stagesPerDay.is_empty(), "Must have at least one stage per day")
