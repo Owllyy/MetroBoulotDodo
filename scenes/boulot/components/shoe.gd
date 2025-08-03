@@ -11,7 +11,7 @@ static var current_dragged: CharacterBody2D = null
 func _process(delta: float) -> void:
 	if is_dragging:
 		global_position = get_global_mouse_position()
-	if GameManager.is_dark == true:
+	if Globals.is_dark == true:
 		#modulate pour mettre en noir
 		pass
 	else:

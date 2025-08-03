@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+@export var sprite : AnimatedSprite2D
 @export var hurt_sound : AudioStreamPlayer2D
 
 @export var BASE_SPEED : float = 500
@@ -30,6 +30,19 @@ func _physics_process(delta: float):
 			stamina -= 1
 		elif !sprint_pressed && stamina < BASE_STAMINA:
 			stamina += 1
+		
+		if direction.x > 0:
+			sprite.play("walk_left")
+			sprite.flip_h = true
+		elif direction.x < 0:
+			sprite.play("walk_left")
+			sprite.flip_h = false
+		if direction.y > 0:
+			sprite.play("walk_front")
+		if direction.y < 0:
+			sprite.play("walk_back")
+		if direction.y == 0 && direction.x == 0:
+			sprite.play("idle")
 		
 		if direction.length() > 0:
 			velocity = velocity.lerp(direction.normalized() * SPEED, ACCELERATION)
