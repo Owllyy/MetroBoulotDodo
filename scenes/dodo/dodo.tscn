@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://gcmy85wqs0x1"]
+[gd_scene load_steps=22 format=3 uid="uid://gcmy85wqs0x1"]
 
 [ext_resource type="Script" uid="uid://c0xuatv3qoe6w" path="res://scripts/dodo/dodoManager.gd" id="1_ijlwg"]
 [ext_resource type="Script" uid="uid://b4fxs1nj1plh" path="res://scripts/dodo/cursor.gd" id="2_dy05f"]
 [ext_resource type="Texture2D" uid="uid://cacbd8mmkfrmp" path="res://assets/dodo/lasso.png" id="3_ijlwg"]
 [ext_resource type="AudioStream" uid="uid://wlyqdf7vcjp1" path="res://assets/dodo/cut.wav" id="4_0kxj8"]
 [ext_resource type="Texture2D" uid="uid://bx503eo3j2jfa" path="res://assets/dodo/enclosure.png" id="4_ijlwg"]
+[ext_resource type="Texture2D" uid="uid://cqk3k8oss62m7" path="res://assets/dodo/Sleep.png" id="6_udora"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_65jhe"]
 a = Vector2(471, 52)
@@ -175,3 +176,9 @@ show_percentage = false
 [node name="Enclosure" type="Sprite2D" parent="."]
 position = Vector2(638, 352)
 texture = ExtResource("4_ijlwg")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_top = 62.0
+offset_right = 1280.0
+offset_bottom = 782.0
+texture = ExtResource("6_udora")
