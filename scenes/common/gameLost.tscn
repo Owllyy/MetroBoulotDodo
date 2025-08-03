@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cy1544hmrd0ml"]
+[gd_scene load_steps=13 format=3 uid="uid://cy1544hmrd0ml"]
 
 [ext_resource type="Texture2D" uid="uid://d0qiqp8483hsk" path="res://assets/common/metro_lost.png" id="1_ccrxr"]
 [ext_resource type="Script" uid="uid://cqxopadmr1hid" path="res://scripts/common/gameLostScreen.gd" id="1_eeho6"]
+[ext_resource type="AudioStream" uid="uid://dmt3vfb2d1qo0" path="res://assets/common/main_music.mp3" id="2_bgm2v"]
 [ext_resource type="Script" uid="uid://cbap38bbgvw3s" path="res://scripts/common/gameLostBackground.gd" id="3_76n84"]
 [ext_resource type="Theme" uid="uid://bpcln3x4i8if6" path="res://assets/common/mainMenu.tres" id="3_bgm2v"]
 [ext_resource type="Texture2D" uid="uid://cn6v47wxjbaqi" path="res://assets/common/door.png" id="4_76n84"]
@@ -22,6 +23,7 @@ bg_color = Color(0, 0, 0, 0)
 
 [node name="GameLost" type="CanvasLayer"]
 script = ExtResource("1_eeho6")
+music = ExtResource("2_bgm2v")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15

@@ -151,6 +151,7 @@ func _ready():
 	event_timer.timeout.connect(do_event)
 	event_timer.one_shot = false
 	event_timer.start(EVENT_RYTHM);
+	GameManager.playMusic(music)
 
 func _physics_process(delta: float) -> void:
 	character.apply_force(force * delta)

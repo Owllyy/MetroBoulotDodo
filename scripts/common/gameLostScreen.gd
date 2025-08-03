@@ -1,6 +1,10 @@
 extends CanvasLayer
 
+@export var music: AudioStream
 @onready var settings_popup = $SettingsMenu
+
+func _ready() -> void:
+	GameManager.playMusic(music)
 
 func _on_play_pressed() -> void:
 	GameManager.goToNextStage()

@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var music: AudioStream
+
 @onready var trigame = $MiniGameTri
 
 @onready var darkness = $Camera2D/DarkOverlay/dark
@@ -21,6 +23,7 @@ var quota : int = 5
 func _ready() -> void:
 	start(GameManager.getDayCount())
 	trigame.show()
+	GameManager.playMusic(music)
 
 func start(iteration: int):
 	# Change if you want to give more or less time per iteration
