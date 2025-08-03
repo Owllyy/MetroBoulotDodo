@@ -136,7 +136,7 @@ func stopSounds():
 		ambientSoundPlayer.stop()
 
 func manage_difficulty():
-	difficulty = 3#GameManager.getDayCount()
+	difficulty = GameManager.getDayCount()
 	if difficulty <= 2:
 		help = true
 	if difficulty <= 5:
