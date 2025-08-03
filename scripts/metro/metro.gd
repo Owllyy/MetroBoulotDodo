@@ -148,6 +148,9 @@ func manage_difficulty():
 	PUSH_FORCE_MIN += (difficulty * 200)
 
 func end_game():
+	if alreadyLost:
+		return
+	
 	immunity = true
 	var fall_distance: float = 1600.0
 	var duration: float = 3.0 
