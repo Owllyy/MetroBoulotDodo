@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://d3xvbx7rc0157"]
+[gd_scene load_steps=13 format=3 uid="uid://d3xvbx7rc0157"]
 
-[ext_resource type="Texture2D" uid="uid://dt28vyeroextc" path="res://assets/metro/wagon.png" id="1_fkkrw"]
 [ext_resource type="Script" uid="uid://c6xnha4tqygq2" path="res://scripts/metro/metro.gd" id="1_rnm2g"]
+[ext_resource type="Texture2D" uid="uid://cafrk7n8iwh7o" path="res://assets/metro/metro.png" id="2_3b0xe"]
 [ext_resource type="PackedScene" uid="uid://b73vwuiajjkax" path="res://scenes/common/character.tscn" id="2_r7db7"]
+[ext_resource type="Texture2D" uid="uid://cwyelyw55fo7g" path="res://assets/metro/people.png" id="3_m6644"]
 [ext_resource type="Texture2D" uid="uid://dgm52wfelf01x" path="res://assets/metro/ui/arrow.png" id="4_oi6tm"]
 [ext_resource type="Texture2D" uid="uid://dok5rbkm4y31v" path="res://assets/metro/ui/arrow_pressed.png" id="5_oi6tm"]
 [ext_resource type="AudioStream" uid="uid://c7hqgm4glahrb" path="res://assets/metro/sound/ding.wav" id="6_yom83"]
@@ -46,16 +47,21 @@ character = NodePath("CharacterBody2D")
 zoom = Vector2(1.2, 1.2)
 
 [node name="Background" type="ColorRect" parent="."]
-offset_left = -697.0
+offset_left = -738.0
 offset_top = -441.0
-offset_right = 726.0
+offset_right = 743.0
 offset_bottom = 1944.0
 color = Color(0.0687983, 0.0687983, 0.0687983, 1)
 
 [node name="wagon" type="Sprite2D" parent="."]
-position = Vector2(1, 9)
-scale = Vector2(1.6524, 1.63088)
-texture = ExtResource("1_fkkrw")
+position = Vector2(-2.73322, 220.873)
+scale = Vector2(1.12698, 1.1123)
+texture = ExtResource("2_3b0xe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.73322, 220.873)
+scale = Vector2(1.12698, 1.1123)
+texture = ExtResource("3_m6644")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_r7db7")]
 BASE_SPEED = 400.0

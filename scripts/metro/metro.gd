@@ -107,6 +107,7 @@ func metro_start():
 
 func _ready():
 	init_event_list()
+	EVENT_RYTHM -= difficulty
 	event_timer = Timer.new()
 	add_child(event_timer)
 	event_timer.timeout.connect(do_event)
@@ -144,6 +145,8 @@ func start_force_tween(direction: Vector2):
 		wagon, "rotation_degrees", 0.0, DECELERATION_DURATION
 	).set_trans(Tween.TRANS_SINE)
 	current_tween.parallel().tween_property(camera, "offset", Vector2.ZERO, DECELERATION_DURATION).set_trans(Tween.TRANS_SINE)
+
+
 
 func _on_game_space_body_exited(body: Node2D) -> void:
 	if immunity == false:
