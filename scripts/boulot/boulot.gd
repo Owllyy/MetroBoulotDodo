@@ -20,7 +20,6 @@ var current_shoes : int = 0
 var quota : int = 5
 
 func _ready() -> void:
-	GameManager.dbg_setDayCount(1)
 	start(GameManager.getDayCount())
 	trigame.show()
 	GameManager.playMusic(music)
