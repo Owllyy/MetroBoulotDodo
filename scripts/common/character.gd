@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 @export var sprite : AnimatedSprite2D
-@export var hurt_sound : AudioStreamPlayer2D
+@export var hurt_sound : AudioStream
 
 @export var BASE_SPEED : float = 500
 @export var SPRINT_SPEED : float = 700.0
@@ -21,7 +21,7 @@ var external_force: Vector2 = Vector2.ZERO
 
 func _physics_process(delta: float):
 	if can_move:
-		var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		var direction = Input.get_vector("left", "right", "up", "down")
 		var sprint_pressed = false
 		SPEED = BASE_SPEED
 		if Input.is_key_pressed(KEY_SHIFT):
@@ -55,7 +55,7 @@ func _physics_process(delta: float):
 		external_force = Vector2.ZERO
 	
 func take_damage():
-	hurt_sound.play()
+	GameManager.playSFXOnce(hurt_sound)
 	if life > 1:
 		life -= 1
 		return 0

@@ -19,6 +19,8 @@ var difficulty = 0
 var current_shoes : int = 0
 var quota : int = 5
 
+var life = 3
+
 func _ready() -> void:
 	start(GameManager.getDayCount())
 	trigame.show()
@@ -28,8 +30,11 @@ func start(iteration: int):
 	# Change if you want to give more or less time per iteration
 	setupTimer(25 + 2 * iteration)
 	quota = 5 + (4 * iteration)
+	$MiniGameTri/SpawnTimer.wait_time = (1.1 - (0.2 * iteration))
 	update_score_display()
+	trigame.set_shoe_speed(90 * (0.8 * iteration))
 	darkness.color = color_bright
+	light_timer.wait_time = 6 - iteration
 	light_timer.start()
 	trigame.hide()
 	game_timer.start()
@@ -53,14 +58,23 @@ func setupTimer(timer_duration: float):
 
 func _on_timer_timeout():
 	gameFail()
+	
+func lose_life():
+	$Camera2D/UI/BAD.show()
+	await get_tree().create_timer(0.2).timeout
+	$Camera2D/UI/BAD.hide()
+	life -= 1
+	if (life <= 0):
+		gameFail()
 
 func gameFail():
 	GameManager.goToLooseScreen()
 	print("Game Failed - Time's up!")
 
-func set_difficulty(difficulty : int):
-	#on regarde le jour et on set
-	pass
+func light_blink():
+	switch_light()
+	await get_tree().create_timer(1.5).timeout
+	switch_light()
 	
 func switch_light():
 	if darkness.color == color_bright:
@@ -81,4 +95,4 @@ func update_score_display():
 func _on_light_timer_timeout() -> void:
 	var onoff = randi() & 1
 	if onoff == 1 :
-		switch_light()
+		light_blink()

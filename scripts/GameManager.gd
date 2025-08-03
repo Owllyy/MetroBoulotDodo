@@ -3,10 +3,13 @@ extends Node
 @export var stagesPerDay : Array[PackedScene] = []
 @export var stageLostScreen : PackedScene
 @export var stageLostTextures : Array[Texture2D] = []
+@export var gameLostScreen : PackedScene
+@export var nextDayScreen : PackedScene
 
 var isStarted := false
 var currentDay := 1
 var currentStage := 0
+var lifes = 3
 
 func _ready() -> void:
 	assert(stagesPerDay.size() == stageLostTextures.size(), "Must have one game lost texture per stage")
@@ -19,14 +22,18 @@ func _ready() -> void:
 			break
 
 # start at 1
-func getDayCount() -> float:
+func getDayCount() -> int:
 	return currentDay
 
 func goToLooseScreen():
 	assert(isStarted)
 	assert(stageLostScreen != null)
 	
-	get_tree().change_scene_to_packed(stageLostScreen)
+	lifes -= 1
+	if lifes > 0:
+		get_tree().change_scene_to_packed(stageLostScreen)
+	else:
+		get_tree().change_scene_to_packed(gameLostScreen)
 
 func goToNextStage():
 	assert(!stagesPerDay.is_empty(), "Must have at least one stage per day")
@@ -36,8 +43,17 @@ func goToNextStage():
 		if currentStage % stagesPerDay.size() == 0:
 			currentDay += 1
 			currentStage = 0
+			get_tree().change_scene_to_packed(nextDayScreen)
+			return
 	else:
 		isStarted = true
+		get_tree().change_scene_to_packed(nextDayScreen)
+		return
+	
+	get_tree().change_scene_to_packed(stagesPerDay[currentStage])
+
+func startCurrentStage():
+	assert(!stagesPerDay.is_empty(), "Must have at least one stage per day")
 	
 	get_tree().change_scene_to_packed(stagesPerDay[currentStage])
 
@@ -56,13 +72,14 @@ func playSFX(stream: AudioStream):
 		$SFXPlayer.stream = stream
 		$SFXPlayer.play()
 
-func playSFXOnce(stream: AudioStream):
+func playSFXOnce(stream: AudioStream, volume: float = 1.0) -> AudioStreamPlayer2D:
 	var player = AudioStreamPlayer2D.new()
-	player.volume_db = linear_to_db(Globals.sfx_volume)
+	player.volume_db = linear_to_db(max(0, Globals.sfx_volume * volume))
 	player.stream = stream
 	add_child(player)
 	player.finished.connect(_on_player_finished.bind(player))
 	player.play()
+	return player
 
 func setMusicVolume(volume: float):
 	Globals.music_volume = volume

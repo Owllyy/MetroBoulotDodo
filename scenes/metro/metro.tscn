@@ -74,18 +74,20 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Metro" type="Node2D" node_paths=PackedStringArray("game_zone", "spawner", "wagon", "camera", "ding", "door_open", "door_close", "accel", "deccel", "arrow_left", "arrow_right", "arrow_down", "arrow_up", "character")]
+[node name="Metro" type="Node2D" node_paths=PackedStringArray("game_zone", "spawner", "wagon", "camera", "arrow_left", "arrow_right", "arrow_down", "arrow_up", "character")]
 script = ExtResource("1_rnm2g")
 game_zone = NodePath("game_space")
 spawner = NodePath("game_space/Spawner")
 wagon = NodePath("wagon")
 camera = NodePath("Camera2D")
 music = ExtResource("2_b4uob")
-ding = NodePath("Sound/ding")
-door_open = NodePath("Sound/door_open")
-door_close = NodePath("Sound/door_close")
-accel = NodePath("Sound/accel")
-deccel = NodePath("Sound/deccel")
+ding = ExtResource("6_yom83")
+door_open = ExtResource("7_3b0xe")
+door_close = ExtResource("8_m6644")
+accel = ExtResource("11_ut38g")
+deccel = ExtResource("13_b4uob")
+runningSound = ExtResource("12_fvxbg")
+ambientSound = ExtResource("7_m6644")
 arrow_left = NodePath("arrow_left")
 arrow_right = NodePath("arrow_right")
 arrow_down = NodePath("arrow_down")
@@ -156,40 +158,6 @@ polygon = PackedVector2Array(10, 1, -5, -16, -24, -47, -38, -89, -42, -128, -104
 position = Vector2(128, 156)
 rotation = -1.5708
 polygon = PackedVector2Array(10, 1, -5, -16, -24, -47, -38, -89, -42, -128, -104, -129, -57, 43, 154, 128, 154, 69, 118, 62, 86, 53, 58, 40, 33, 24)
-
-[node name="Sound" type="Node2D" parent="."]
-
-[node name="ding" type="AudioStreamPlayer2D" parent="Sound"]
-stream = ExtResource("6_yom83")
-volume_db = -15.0
-
-[node name="door_open" type="AudioStreamPlayer2D" parent="Sound"]
-stream = ExtResource("7_3b0xe")
-volume_db = -30.3
-
-[node name="door_close" type="AudioStreamPlayer2D" parent="Sound"]
-stream = ExtResource("8_m6644")
-volume_db = -10.0
-
-[node name="background" type="AudioStreamPlayer2D" parent="Sound"]
-stream = ExtResource("7_m6644")
-volume_db = -30.0
-pitch_scale = 1.25
-autoplay = true
-
-[node name="accel" type="AudioStreamPlayer2D" parent="Sound"]
-stream = ExtResource("11_ut38g")
-volume_db = -30.0
-attenuation = 3.4822
-
-[node name="running" type="AudioStreamPlayer2D" parent="Sound"]
-stream = ExtResource("12_fvxbg")
-volume_db = -40.0
-autoplay = true
-
-[node name="deccel" type="AudioStreamPlayer2D" parent="Sound"]
-stream = ExtResource("13_b4uob")
-volume_db = -35.0
 
 [node name="arrow_right" type="AnimatedSprite2D" parent="."]
 visible = false

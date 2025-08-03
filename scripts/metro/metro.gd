@@ -12,11 +12,13 @@ var NUMBER_OF_EVENT = 5;
 @export var CAMERA_OFFSET: float = 60.0
 
 @export var music: AudioStream
-@export var ding: AudioStreamPlayer2D
-@export var door_open: AudioStreamPlayer2D
-@export var door_close: AudioStreamPlayer2D
-@export var accel: AudioStreamPlayer2D
-@export var deccel: AudioStreamPlayer2D
+@export var ding: AudioStream
+@export var door_open: AudioStream
+@export var door_close: AudioStream
+@export var accel: AudioStream
+@export var deccel: AudioStream
+@export var runningSound: AudioStream
+@export var ambientSound: AudioStream
 
 @export var arrow_left: AnimatedSprite2D
 @export var arrow_right: AnimatedSprite2D
@@ -38,6 +40,9 @@ var help = false
 var force = Vector2.ZERO
 var push_back = Vector2.ZERO
 var current_tween: Tween
+var ambientSoundPlayer: AudioStreamPlayer2D
+var runningMetroPlayer: AudioStreamPlayer2D
+var alreadyLost := false
 
 @export var INVINCIBILITY_DURATION = 1.0
 var immunity = false
@@ -88,8 +93,12 @@ func metro_left():
 	arrow_left.visible = false
 	
 func metro_stop():
-	ding.play()
-	deccel.play()
+	if help:
+		arrow_down.visible = true
+		arrow_down.play("default")
+	runningMetroPlayer.stop()
+	GameManager.playSFXOnce(ding)
+	GameManager.playSFXOnce(deccel, 0.3)
 	await get_tree().create_timer(EVENT_PREPARE_DURATION).timeout
 	if help:
 		arrow_down.visible = true
@@ -98,7 +107,7 @@ func metro_stop():
 	event_timer.paused = true
 	await get_tree().create_timer(EVENT_DURATION).timeout
 	arrow_down.visible = false
-	door_open.play()
+	GameManager.playSFXOnce(door_open, 0.5)
 	wagon.play("open")
 	await get_tree().create_timer(EVENT_PREPARE_DURATION).timeout
 	event_timer.paused = false
@@ -107,11 +116,8 @@ func metro_start():
 	event_timer.paused = true
 	await get_tree().create_timer(EVENT_PREPARE_DURATION).timeout
 	event_timer.paused = false
-	if help:
-		arrow_up.visible = true
-		arrow_up.play("default")
-	accel.play()
-	door_close.play()
+	GameManager.playSFXOnce(accel, 0.5).finished.connect(_on_accell_finished)
+	GameManager.playSFXOnce(door_close, 0.5)
 	wagon.play("close")
 	await get_tree().create_timer(EVENT_PREPARE_DURATION).timeout
 	start_force_tween(Vector2.DOWN)
@@ -119,6 +125,15 @@ func metro_start():
 	await get_tree().create_timer(EVENT_DURATION).timeout
 	event_timer.paused = false
 	arrow_up.visible = false
+
+func _on_accell_finished():
+	runningMetroPlayer = GameManager.playSFXOnce(runningSound, 0.3)
+
+func stopSounds():
+	if runningMetroPlayer:
+		runningMetroPlayer.stop()
+	if ambientSoundPlayer:
+		ambientSoundPlayer.stop()
 
 func manage_difficulty():
 	difficulty = 3#GameManager.getDayCount()
@@ -133,6 +148,9 @@ func manage_difficulty():
 	PUSH_FORCE_MIN += (difficulty * 200)
 
 func end_game():
+	if alreadyLost:
+		return
+	
 	immunity = true
 	var fall_distance: float = 1600.0
 	var duration: float = 3.0 
@@ -141,6 +159,7 @@ func end_game():
 	camera, "position:y", camera.position.y + fall_distance, duration
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	await tween.finished
+	stopSounds()
 	GameManager.goToNextStage()
 
 func _ready():
@@ -153,6 +172,8 @@ func _ready():
 	event_timer.one_shot = false
 	event_timer.start(EVENT_RYTHM);
 	GameManager.playMusic(music)
+	ambientSoundPlayer = GameManager.playSFXOnce(ambientSound, 0.5)
+	_on_accell_finished()
 
 func _physics_process(delta: float) -> void:
 	character.apply_force(force * delta)
@@ -188,7 +209,10 @@ func _on_game_space_body_exited(body: Node2D) -> void:
 	if body is Player:
 		if immunity == false:
 			if character.take_damage() == 1:
-				GameManager.goToLooseScreen()
+				if not alreadyLost:
+					alreadyLost = true
+					stopSounds()
+					GameManager.goToLooseScreen()
 			else:
 				character.start_blink_effect()
 				immunity = true
@@ -210,7 +234,10 @@ func _on_game_space_body_exited(body: Node2D) -> void:
 func _on_character_body_2d_get_hit() -> void:
 	if immunity == false:
 		if character.take_damage() == 1:
-			GameManager.goToLooseScreen()
+			if not alreadyLost:
+				alreadyLost = true
+				stopSounds()
+				GameManager.goToLooseScreen()
 		else:
 			character.start_blink_effect()
 			immunity = true
