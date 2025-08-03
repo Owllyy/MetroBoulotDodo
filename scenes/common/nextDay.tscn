@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://boc1wv3pcw80v"]
+
+[ext_resource type="Script" uid="uid://c2clnnvie5q23" path="res://scenes/common/nextDay.gd" id="1_xiaww"]
+[ext_resource type="FontFile" uid="uid://56xqab4g1riy" path="res://assets/common/DejaVuSerif.ttf" id="1_yqj2n"]
+
+[node name="NextDay" type="Node2D"]
+script = ExtResource("1_xiaww")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_yqj2n")
+theme_override_font_sizes/font_size = 100
+text = "DAY 0"
+horizontal_alignment = 1
+vertical_alignment = 1
