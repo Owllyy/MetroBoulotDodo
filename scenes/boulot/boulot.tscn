@@ -36,7 +36,13 @@ size = Vector2(64, 364)
 script = ExtResource("1_wqw1y")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
+
+[node name="DarkOverlay" type="CanvasLayer" parent="."]
+
+[node name="dark" type="ColorRect" parent="DarkOverlay"]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.788235)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_vsk8r")]
 disable_mode = 2
@@ -97,6 +103,7 @@ texture = ExtResource("3_5k82q")
 shape = SubResource("RectangleShape2D_iwto3")
 
 [node name="MiniGameTri" type="Node2D" parent="."]
+visible = false
 script = ExtResource("6_lssby")
 
 [node name="shoe_spawn_area" type="Area2D" parent="MiniGameTri"]
@@ -149,6 +156,19 @@ shape = SubResource("RectangleShape2D_tualn")
 position = Vector2(556, 254)
 scale = Vector2(195.5, 225.5)
 texture = ExtResource("3_5k82q")
+
+[node name="Score" type="Label" parent="."]
+z_index = 5
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -444.0
+offset_top = 269.0
+offset_right = -289.0
+offset_bottom = 318.0
+grow_vertical = 2
+text = "TEST"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="TriZone" to="CharacterBody2D/PlayerCollider" method="_on_tri_zone_body_entered"]
 [connection signal="body_exited" from="TriZone" to="CharacterBody2D/PlayerCollider" method="_on_tri_zone_body_exited"]
