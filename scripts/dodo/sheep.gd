@@ -24,10 +24,13 @@ var state_change_time: float = 0.0
 @export var cry: Array[AudioStream]
 @onready var FootstepsAudioPlayer: AudioStreamPlayer2D = $FootstepsAudioPlayer
 @onready var CryAudioPlayer: AudioStreamPlayer2D = $CryAudioPlayer
+@onready var AnimatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready():
 	random.randomize()
 	var start_state = State.IDLE if random.randf() < 0.5 else State.WALK
+	if (random.randf() < 0.5):
+		AnimatedSprite.flip_h = true
 	setState(start_state)
 
 func setState(new_state: State):
@@ -36,10 +39,12 @@ func setState(new_state: State):
 	
 	match current_state:
 		State.IDLE:
+			AnimatedSprite.play("idle")
 			direction = Vector2.ZERO
 			footstep_timer = 0.0
 			state_change_time = random.randf_range(idle_duration_min, idle_duration_max)
 		State.WALK:
+			AnimatedSprite.play("walk")
 			chooseDirection()
 			footstep_timer = 0.0
 			state_change_time = random.randf_range(walk_duration_min, walk_duration_max)
@@ -47,6 +52,10 @@ func setState(new_state: State):
 func chooseDirection():
 	direction = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0))
 	direction = direction.normalized()
+	if (direction.x > 0):
+		AnimatedSprite.flip_h = true
+	else:
+		AnimatedSprite.flip_h = false
 
 func _process(delta: float) -> void:
 	state_timer += delta
