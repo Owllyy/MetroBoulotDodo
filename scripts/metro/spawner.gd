@@ -29,4 +29,9 @@ func spawn_projectiles() -> void:
 	projectile.global_position = global_position + spawn_position
 	projectile.direction = direction_to_center
 	
+	var angle_variation_degrees = 25.0
+	var random_angle_rad = deg_to_rad(randf_range(-angle_variation_degrees, angle_variation_degrees))
+	var final_direction = direction_to_center.rotated(random_angle_rad)
+	projectile.global_position = global_position + spawn_position
+	projectile.direction = final_direction
 	add_child(projectile)

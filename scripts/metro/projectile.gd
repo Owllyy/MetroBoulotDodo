@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Projectile
 
 @export var sprite: AnimatedSprite2D
-@export var speed: float = 150.0
+@export var speed: float = 200.0
 var direction: Vector2 = Vector2.ZERO
 
 func _ready():
