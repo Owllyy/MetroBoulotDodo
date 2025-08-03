@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var visualPolygon = Polygon2D.new()
 @onready var detectionArea = Area2D.new()
 @onready var collisionPolygon = CollisionPolygon2D.new()
+@onready var AudioPlayer : AudioStreamPlayer2D = $AudioPlayer
 
 func _process(delta: float) -> void:
 	self.position = get_viewport().get_mouse_position()
@@ -52,6 +53,8 @@ func checkSheepCollisionWithTrail(threshold: float = 5.0):
 		var index = is_sheep_touching_trail(sheep)
 		if index > 0:
 			line.points = line.points.slice(index)
+			if (AudioPlayer.playing == false):
+				AudioPlayer.play()
 
 func is_sheep_touching_trail(sheep_node) -> int:
 	var sheep_collision = null
