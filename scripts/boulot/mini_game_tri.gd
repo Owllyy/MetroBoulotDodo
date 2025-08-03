@@ -10,6 +10,9 @@ const SHOE_SCENE = preload("res://scenes/boulot/shoe.tscn")
 
 var shoe_speed = 100.0
 
+func set_shoe_speed(speed):
+	shoe_speed = speed
+
 func _ready():
 	spawn_timer.start()
 	

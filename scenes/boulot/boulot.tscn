@@ -115,7 +115,6 @@ position = Vector2(-7, 0)
 shape = SubResource("RectangleShape2D_lssby")
 
 [node name="SpawnTimer" type="Timer" parent="MiniGameTri"]
-wait_time = 0.5
 
 [node name="shoe_despawn" type="Area2D" parent="MiniGameTri"]
 position = Vector2(750, -140)
