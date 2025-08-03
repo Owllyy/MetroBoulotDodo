@@ -129,6 +129,7 @@ func manage_difficulty():
 	PUSH_FORCE_MIN += (difficulty * 200)
 
 func end_game():
+	immunity = true
 	var fall_distance: float = 1600.0
 	var duration: float = 3.0 
 	var tween = create_tween()
@@ -182,15 +183,15 @@ func start_force_tween(direction: Vector2):
 
 func _on_game_space_body_exited(body: Node2D) -> void:
 	if body is Player:
-			if immunity == false:
-				if character.take_damage() == 1:
-					GameManager.goToNextStage()
-				else:
-					character.start_blink_effect()
-					immunity = true
-					await get_tree().create_timer(INVINCIBILITY_DURATION).timeout
-					character.stop_blink_effect()
-					immunity = false
+		if immunity == false:
+			if character.take_damage() == 1:
+				GameManager.goToLooseScreen()
+			else:
+				character.start_blink_effect()
+				immunity = true
+				await get_tree().create_timer(INVINCIBILITY_DURATION).timeout
+				character.stop_blink_effect()
+				immunity = false
 	elif body is Projectile:
 		body.queue_free()
 
