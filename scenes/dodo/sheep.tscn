@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://c2bl3nf5h84lr" path="res://assets/dodo/sheep4.png" id="18_1sguu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wqo72"]
-size = Vector2(50, 50)
+size = Vector2(55, 49)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1xala"]
 animations = [{
@@ -59,6 +59,7 @@ footsteps = Array[AudioStream]([ExtResource("2_h1q58"), ExtResource("3_q8men"), 
 cry = Array[AudioStream]([ExtResource("9_he6ji"), ExtResource("10_cjif3"), ExtResource("11_ms8xp"), ExtResource("12_o8d1v"), ExtResource("13_3ys8r"), ExtResource("14_1sguu")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5.5, 5.5)
 shape = SubResource("RectangleShape2D_wqo72")
 
 [node name="sprite" type="Sprite2D" parent="."]

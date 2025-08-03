@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cmg6ketmw32o5"]
 
-[ext_resource type="Script" uid="uid://duew5bruno66n" path="res://scenes/boulot/components/shoe.gd" id="1_xoqbc"]
-[ext_resource type="Texture2D" uid="uid://c524b6nem54kp" path="res://assets/boulot/shoe_white.png" id="2_rp8rv"]
+[ext_resource type="Script" path="res://scripts/boulot/shoe.gd" id="1_v7v33"]
+[ext_resource type="Texture2D" uid="uid://c524b6nem54kp" path="res://assets/boulot/shoe_white.png" id="2_5q1li"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5lyde"]
 radius = 33.0606
@@ -9,13 +9,13 @@ radius = 33.0606
 [node name="Shoe" type="CharacterBody2D" groups=["shoes"]]
 collision_layer = 2
 input_pickable = true
-script = ExtResource("1_xoqbc")
+script = ExtResource("1_v7v33")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["shoes"]]
 shape = SubResource("CircleShape2D_5lyde")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_rp8rv")
+texture = ExtResource("2_5q1li")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

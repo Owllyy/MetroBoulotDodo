@@ -1,36 +1,38 @@
-[gd_scene load_steps=13 format=3 uid="uid://4kkpvhifi881"]
+[gd_scene load_steps=14 format=3 uid="uid://cy1544hmrd0ml"]
 
-[ext_resource type="Script" uid="uid://dc5170xyds48g" path="res://scripts/common/mainMenu.gd" id="1_1bltu"]
-[ext_resource type="Texture2D" uid="uid://jttgffsi34eg" path="res://assets/common/menu.png" id="2_4ddm4"]
-[ext_resource type="Theme" uid="uid://dlukdkpy0mpss" path="res://assets/common/mainSettings.tres" id="2_c7yu4"]
-[ext_resource type="Texture2D" uid="uid://cn6v47wxjbaqi" path="res://assets/common/door.png" id="3_4ddm4"]
-[ext_resource type="Theme" uid="uid://bpcln3x4i8if6" path="res://assets/common/mainMenu.tres" id="3_g4dbv"]
-[ext_resource type="Script" uid="uid://bdl6rtb8waxmm" path="res://scripts/common/settings_menu.gd" id="3_hnixr"]
-[ext_resource type="Script" uid="uid://3gjsgqdeg42p" path="res://scripts/common/assign_key_button.gd" id="4_hnixr"]
-[ext_resource type="Texture2D" uid="uid://stid35knijf4" path="res://assets/common/gear.png" id="5_xmut3"]
+[ext_resource type="Texture2D" uid="uid://d0qiqp8483hsk" path="res://assets/common/metro_lost.png" id="1_ccrxr"]
+[ext_resource type="Script" uid="uid://cqxopadmr1hid" path="res://scenes/common/gameLostScreen.gd" id="1_eeho6"]
+[ext_resource type="Script" uid="uid://cbap38bbgvw3s" path="res://scenes/common/gameLostBackground.gd" id="3_76n84"]
+[ext_resource type="Theme" uid="uid://bpcln3x4i8if6" path="res://assets/common/mainMenu.tres" id="3_bgm2v"]
+[ext_resource type="Texture2D" uid="uid://cn6v47wxjbaqi" path="res://assets/common/door.png" id="4_76n84"]
+[ext_resource type="Texture2D" uid="uid://stid35knijf4" path="res://assets/common/gear.png" id="5_2iook"]
+[ext_resource type="Script" uid="uid://bdl6rtb8waxmm" path="res://scripts/common/settings_menu.gd" id="6_xhw24"]
+[ext_resource type="Theme" uid="uid://dlukdkpy0mpss" path="res://assets/common/mainSettings.tres" id="7_f1e6e"]
+[ext_resource type="Script" uid="uid://3gjsgqdeg42p" path="res://scripts/common/assign_key_button.gd" id="8_vadc5"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmut3"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccrxr"]
 bg_color = Color(0, 0, 0, 0)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ddm4"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eeho6"]
 bg_color = Color(0.6, 0.6, 0.6, 0.152941)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4dbv"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knmex"]
 bg_color = Color(0.6, 0.6, 0.6, 0.223529)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hnixr"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8eiha"]
 bg_color = Color(0, 0, 0, 0)
 
-[node name="MainMenu" type="CanvasLayer"]
-script = ExtResource("1_1bltu")
+[node name="GameLost" type="CanvasLayer"]
+script = ExtResource("1_eeho6")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_4ddm4")
+texture = ExtResource("1_ccrxr")
+script = ExtResource("3_76n84")
 
 [node name="Play" type="Button" parent="."]
 anchors_preset = 3
@@ -38,32 +40,32 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -334.0
-offset_top = -130.0
-offset_right = -70.0
-offset_bottom = -33.0
+offset_left = -287.0
+offset_top = -123.0
+offset_right = -77.0
+offset_bottom = -47.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/focus = SubResource("StyleBoxFlat_xmut3")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4ddm4")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_g4dbv")
-theme_override_styles/normal = SubResource("StyleBoxFlat_hnixr")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ccrxr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_eeho6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_knmex")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8eiha")
 
 [node name="Quit" type="Button" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -122.0
-offset_top = 20.0
-offset_right = -82.0
-offset_bottom = 71.0
+offset_left = -54.0
+offset_top = 9.0
+offset_right = -14.0
+offset_bottom = 60.0
 grow_horizontal = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("3_g4dbv")
-icon = ExtResource("3_4ddm4")
+theme = ExtResource("3_bgm2v")
+icon = ExtResource("4_76n84")
 flat = true
 expand_icon = true
 
@@ -71,15 +73,15 @@ expand_icon = true
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -189.0
-offset_top = 21.0
-offset_right = -140.0
-offset_bottom = 69.0
+offset_left = -58.0
+offset_top = 80.0
+offset_right = -9.0
+offset_bottom = 128.0
 grow_horizontal = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("3_g4dbv")
-icon = ExtResource("5_xmut3")
+theme = ExtResource("3_bgm2v")
+icon = ExtResource("5_2iook")
 flat = true
 expand_icon = true
 
@@ -93,7 +95,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("3_hnixr")
+script = ExtResource("6_xhw24")
 
 [node name="SettingsPopup" type="PanelContainer" parent="SettingsMenu"]
 custom_minimum_size = Vector2(400, 380)
@@ -109,7 +111,7 @@ offset_right = 200.0
 offset_bottom = 190.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_c7yu4")
+theme = ExtResource("7_f1e6e")
 
 [node name="MarginContainer" type="MarginContainer" parent="SettingsMenu/SettingsPopup"]
 layout_mode = 2
@@ -272,9 +274,9 @@ offset_bottom = 11.0
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 8
-theme = ExtResource("2_c7yu4")
+theme = ExtResource("7_f1e6e")
 text = "[key]"
-script = ExtResource("4_hnixr")
+script = ExtResource("8_vadc5")
 action = "interact"
 
 [node name="Up" type="Control" parent="SettingsMenu/SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
@@ -308,9 +310,9 @@ offset_bottom = 11.0
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 8
-theme = ExtResource("2_c7yu4")
+theme = ExtResource("7_f1e6e")
 text = "[key]"
-script = ExtResource("4_hnixr")
+script = ExtResource("8_vadc5")
 action = "up"
 
 [node name="Down" type="Control" parent="SettingsMenu/SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
@@ -344,9 +346,9 @@ offset_bottom = 11.0
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 8
-theme = ExtResource("2_c7yu4")
+theme = ExtResource("7_f1e6e")
 text = "[key]"
-script = ExtResource("4_hnixr")
+script = ExtResource("8_vadc5")
 action = "down"
 
 [node name="Left" type="Control" parent="SettingsMenu/SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
@@ -380,9 +382,9 @@ offset_bottom = 11.0
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 8
-theme = ExtResource("2_c7yu4")
+theme = ExtResource("7_f1e6e")
 text = "[key]"
-script = ExtResource("4_hnixr")
+script = ExtResource("8_vadc5")
 action = "left"
 
 [node name="Right" type="Control" parent="SettingsMenu/SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]
@@ -416,9 +418,9 @@ offset_bottom = 11.0
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 8
-theme = ExtResource("2_c7yu4")
+theme = ExtResource("7_f1e6e")
 text = "[key]"
-script = ExtResource("4_hnixr")
+script = ExtResource("8_vadc5")
 action = "right"
 
 [node name="Space3" type="Control" parent="SettingsMenu/SettingsPopup/MarginContainer/ScrollContainer/MarginContainer/Panel"]

@@ -5,28 +5,30 @@ extends Node
 var random = RandomNumberGenerator.new()
 var minSheepSpeed : int = 20
 var game_timer: Timer
-var timer_duration: float = 30.0
 @onready var timerSlider: ProgressBar = $TimerBar
 
 
 func _ready() -> void:
 	random.randomize()
-	setupTimer()
+	
 	start(GameManager.getDayCount())
-
-func setupTimer():
-	game_timer = Timer.new()
-	game_timer.wait_time = timer_duration
-	game_timer.one_shot = true
-	game_timer.timeout.connect(_on_timer_timeout)
-	add_child(game_timer)
 
 func start(iteration: int):
 	var sheepsToSpawn = iteration * 3
 	var maxSheepSpeed = 15 + (10 * iteration)
 	var maxSize = 1 + (0.1 * iteration)
+	
+	setupTimer(15.0 + (2 * iteration))
 	spawnSheeps(sheepsToSpawn, maxSheepSpeed, maxSize)
 	game_timer.start()
+
+func setupTimer(timer_duration: float):
+	game_timer = Timer.new()
+	game_timer.wait_time = timer_duration
+	timerSlider.max_value = timer_duration
+	game_timer.one_shot = true
+	game_timer.timeout.connect(_on_timer_timeout)
+	add_child(game_timer)
 
 func spawnSheeps(sheepNumber: int, maxSheepSpeed: int, maxSize: float):
 	for i in sheepNumber:
@@ -87,4 +89,5 @@ func _on_timer_timeout():
 	gameFail()
 
 func gameFail():
+	GameManager.goToLooseScreen()
 	print("Game Failed - Time's up!")

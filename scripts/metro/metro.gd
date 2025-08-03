@@ -198,7 +198,7 @@ func _on_game_space_body_exited(body: Node2D) -> void:
 func _on_character_body_2d_get_hit() -> void:
 	if immunity == false:
 		if character.take_damage() == 1:
-			GameManager.goToNextStage()
+			GameManager.goToLooseScreen()
 		else:
 			character.start_blink_effect()
 			immunity = true

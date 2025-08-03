@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://gcmy85wqs0x1"]
+[gd_scene load_steps=21 format=3 uid="uid://gcmy85wqs0x1"]
 
 [ext_resource type="Script" uid="uid://c0xuatv3qoe6w" path="res://scripts/dodo/dodoManager.gd" id="1_ijlwg"]
 [ext_resource type="Script" uid="uid://b4fxs1nj1plh" path="res://scripts/dodo/cursor.gd" id="2_dy05f"]
 [ext_resource type="Texture2D" uid="uid://cacbd8mmkfrmp" path="res://assets/dodo/lasso.png" id="3_ijlwg"]
+[ext_resource type="AudioStream" uid="uid://wlyqdf7vcjp1" path="res://assets/dodo/cut.wav" id="4_0kxj8"]
 [ext_resource type="Texture2D" uid="uid://bx503eo3j2jfa" path="res://assets/dodo/enclosure.png" id="4_ijlwg"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_65jhe"]
@@ -146,6 +147,9 @@ distanceBetweenPoints = 10
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("3_ijlwg")
 
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="Cursor"]
+stream = ExtResource("4_0kxj8")
+
 [node name="Trail" type="Line2D" parent="."]
 width_curve = SubResource("Curve_dy05f")
 default_color = Color(0.172833, 0.172833, 0.172833, 1)
@@ -160,10 +164,10 @@ polygon = PackedVector2Array(-360, 99, -212, -165, -18, -203, 219, -177, 552, -1
 
 [node name="TimerBar" type="ProgressBar" parent="."]
 custom_minimum_size = Vector2(300, 0)
-offset_left = 833.0
-offset_top = 508.0
-offset_right = 933.0
-offset_bottom = 535.0
+offset_left = 21.0
+offset_top = 15.0
+offset_right = 321.0
+offset_bottom = 42.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_dy05f")
 max_value = 30.0
 show_percentage = false
