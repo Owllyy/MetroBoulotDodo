@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dpmyma7f83av3"
+path="res://.godot/imported/Bruit de pas dans l'herbe 5.wav-2f0a9410790b0d24a1d01bfb64da02ac.sample"
+
+[deps]
+
+source_file="res://assets/dodo/sheepFootsteps/Bruit de pas dans l'herbe 5.wav"
+dest_files=["res://.godot/imported/Bruit de pas dans l'herbe 5.wav-2f0a9410790b0d24a1d01bfb64da02ac.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

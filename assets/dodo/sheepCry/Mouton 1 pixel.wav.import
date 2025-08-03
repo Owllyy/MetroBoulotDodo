@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ctuvit7jji227"
+path="res://.godot/imported/Mouton 1 pixel.wav-f4366dbf09a045e299661521db261314.sample"
+
+[deps]
+
+source_file="res://assets/dodo/sheepCry/Mouton 1 pixel.wav"
+dest_files=["res://.godot/imported/Mouton 1 pixel.wav-f4366dbf09a045e299661521db261314.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

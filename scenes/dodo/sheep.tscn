@@ -1,13 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://e3miiu2pgoir"]
+[gd_scene load_steps=17 format=3 uid="uid://e3miiu2pgoir"]
 
 [ext_resource type="Texture2D" uid="uid://jo4nj5nr34rk" path="res://assets/dodo/icon.svg" id="1_0mqg2"]
 [ext_resource type="Script" uid="uid://k413mijsha8v" path="res://scripts/dodo/sheep.gd" id="1_cql80"]
+[ext_resource type="AudioStream" uid="uid://c0wi6mgybto50" path="res://assets/dodo/sheepFootsteps/Bruit de pas dans l'herbe 1.wav" id="2_h1q58"]
+[ext_resource type="AudioStream" uid="uid://5ilgvupisjqu" path="res://assets/dodo/sheepFootsteps/Bruit de pas dans l'herbe 2.wav" id="3_q8men"]
+[ext_resource type="AudioStream" uid="uid://puvmd6bsw5ye" path="res://assets/dodo/sheepFootsteps/Bruit de pas dans l'herbe 3.wav" id="4_eklox"]
+[ext_resource type="AudioStream" uid="uid://dgxljj80q2xp" path="res://assets/dodo/sheepFootsteps/Bruit de pas dans l'herbe 4.wav" id="5_qdha2"]
+[ext_resource type="AudioStream" uid="uid://dpmyma7f83av3" path="res://assets/dodo/sheepFootsteps/Bruit de pas dans l'herbe 5.wav" id="6_xqg25"]
+[ext_resource type="AudioStream" uid="uid://dj467gk0hnj75" path="res://assets/dodo/sheepFootsteps/Bruit de pas dans l'herbe 6.wav" id="7_kx7cb"]
+[ext_resource type="AudioStream" uid="uid://bdd6hcjejjhku" path="res://assets/dodo/sheepFootsteps/Bruit de pas dans l'herbe 7.wav" id="8_he6ji"]
+[ext_resource type="AudioStream" uid="uid://ctuvit7jji227" path="res://assets/dodo/sheepCry/Mouton 1 pixel.wav" id="9_he6ji"]
+[ext_resource type="AudioStream" uid="uid://1hh6efks84v2" path="res://assets/dodo/sheepCry/Mouton 2 pixel.wav" id="10_cjif3"]
+[ext_resource type="AudioStream" uid="uid://dhqyj7ppp7123" path="res://assets/dodo/sheepCry/Mouton 3 pixel.wav" id="11_ms8xp"]
+[ext_resource type="AudioStream" uid="uid://dfftcwo2ddwta" path="res://assets/dodo/sheepCry/Mouton 4 pixel (boost).wav" id="12_o8d1v"]
+[ext_resource type="AudioStream" uid="uid://bryil8o2v5w7c" path="res://assets/dodo/sheepCry/Mouton 5 pixel.wav" id="13_3ys8r"]
+[ext_resource type="AudioStream" uid="uid://cdl8quvrx2tom" path="res://assets/dodo/sheepCry/Mouton 6 pixel (gras).wav" id="14_1sguu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wqo72"]
 size = Vector2(50, 50)
 
 [node name="Sheep" type="CharacterBody2D"]
 script = ExtResource("1_cql80")
+footsteps = Array[AudioStream]([ExtResource("2_h1q58"), ExtResource("3_q8men"), ExtResource("4_eklox"), ExtResource("5_qdha2"), ExtResource("6_xqg25"), ExtResource("7_kx7cb"), ExtResource("8_he6ji")])
+cry = Array[AudioStream]([ExtResource("9_he6ji"), ExtResource("10_cjif3"), ExtResource("11_ms8xp"), ExtResource("12_o8d1v"), ExtResource("13_3ys8r"), ExtResource("14_1sguu")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wqo72")
@@ -17,3 +32,10 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("1_0mqg2")
 
 [node name="Sheep" type="Node2D" parent="."]
+
+[node name="FootstepsAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+max_polyphony = 5
+
+[node name="CryAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_1sguu")
+max_polyphony = 5
