@@ -10,7 +10,7 @@ extends CharacterBody2D
 @onready var detectionArea = Area2D.new()
 @onready var collisionPolygon = CollisionPolygon2D.new()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	self.position = get_viewport().get_mouse_position()
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or Input.is_action_pressed("interact"):
 		mouseSprite.modulate = Color.BLACK
@@ -43,7 +43,7 @@ func addPointsToLine():
 		
 		lastPoint = newPoint
 
-func checkSheepCollisionWithTrail(threshold: float = 5.0):
+func checkSheepCollisionWithTrail(_threshold: float = 5.0):
 	var sheep_nodes = get_tree().get_nodes_in_group("sheep")
 	
 	for sheep in sheep_nodes:

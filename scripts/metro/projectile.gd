@@ -20,5 +20,5 @@ func _ready():
 	if direction.y == 0 && direction.x == 0:
 		sprite.play("idle")
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	move_and_slide()

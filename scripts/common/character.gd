@@ -4,8 +4,8 @@ class_name Player
 @export var sprite : AnimatedSprite2D
 @export var hurt_sound : AudioStream
 
-@export var BASE_SPEED : float = 500
-@export var SPRINT_SPEED : float = 700.0
+@export var BASE_SPEED : int = 500
+@export var SPRINT_SPEED : int = 700
 @export var BASE_STAMINA : int = 200
 @export var FRICTION : float = 0.15
 @export var ACCELERATION : float  = 0.2
@@ -19,7 +19,7 @@ var can_move : bool = true
 
 var external_force: Vector2 = Vector2.ZERO
 
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	if can_move:
 		var direction = Input.get_vector("left", "right", "up", "down")
 		var sprint_pressed = false
@@ -74,17 +74,17 @@ func start_blink_effect():
 		blink_tween.kill()
 
 	blink_tween = create_tween().set_loops()
-	var sprite = $Sprite2D 
-	blink_tween.tween_property(sprite, "modulate:a", 0.2, 0.1)
-	blink_tween.chain().tween_property(sprite, "modulate:a", 1.0, 0.1)
+	var sprite2d = $Sprite2D 
+	blink_tween.tween_property(sprite2d, "modulate:a", 0.2, 0.1)
+	blink_tween.chain().tween_property(sprite2d, "modulate:a", 1.0, 0.1)
 
 func stop_blink_effect():
 	if blink_tween:
 		blink_tween.kill()
 		blink_tween = null
 	
-	var sprite = $Sprite2D
-	sprite.modulate.a = 1.0
+	var sprite2d = $Sprite2D
+	sprite2d.modulate.a = 1.0
 
 signal get_hit;
 func _on_hurtbox_body_entered(body: Node2D) -> void:
