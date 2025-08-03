@@ -74,8 +74,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Metro" type="Node2D" node_paths=PackedStringArray("spawner", "wagon", "camera", "ding", "door_open", "door_close", "accel", "deccel", "arrow_left", "arrow_right", "arrow_down", "arrow_up", "character")]
+[node name="Metro" type="Node2D" node_paths=PackedStringArray("game_zone", "spawner", "wagon", "camera", "ding", "door_open", "door_close", "accel", "deccel", "arrow_left", "arrow_right", "arrow_down", "arrow_up", "character")]
 script = ExtResource("1_rnm2g")
+game_zone = NodePath("game_space")
 spawner = NodePath("game_space/Spawner")
 wagon = NodePath("wagon")
 camera = NodePath("Camera2D")
@@ -131,7 +132,7 @@ top_level = true
 shape = SubResource("CircleShape2D_oi6tm")
 
 [node name="Spawner" parent="game_space" instance=ExtResource("7_fvxbg")]
-cd = 5.0
+cd = 20.0
 
 [node name="wall" type="StaticBody2D" parent="."]
 visible = false
@@ -225,6 +226,5 @@ sprite_frames = SubResource("SpriteFrames_062a6")
 frame_progress = 0.535918
 speed_scale = 0.7
 
-[connection signal="animation_finished" from="wagon" to="." method="_on_wagon_animation_finished"]
 [connection signal="get_hit" from="CharacterBody2D" to="." method="_on_character_body_2d_get_hit"]
 [connection signal="body_exited" from="game_space" to="." method="_on_game_space_body_exited"]

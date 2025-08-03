@@ -14,6 +14,6 @@ sprite = NodePath("AnimatedSprite2D")
 shape = SubResource("CircleShape2D_jdar4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.468128, 0.468128, 0.468128, 1)
+modulate = Color(0.593133, 0.593134, 0.593133, 1)
 sprite_frames = ExtResource("2_ypnxx")
 animation = &"idle"
