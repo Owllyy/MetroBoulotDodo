@@ -42,6 +42,7 @@ var push_back = Vector2.ZERO
 var current_tween: Tween
 var ambientSoundPlayer: AudioStreamPlayer2D
 var runningMetroPlayer: AudioStreamPlayer2D
+var alreadyLost := false
 
 @export var INVINCIBILITY_DURATION = 1.0
 var immunity = false
@@ -205,8 +206,10 @@ func _on_game_space_body_exited(body: Node2D) -> void:
 	if body is Player:
 		if immunity == false:
 			if character.take_damage() == 1:
-				stopSounds()
-				GameManager.goToLooseScreen()
+				if not alreadyLost:
+					alreadyLost = true
+					stopSounds()
+					GameManager.goToLooseScreen()
 			else:
 				character.start_blink_effect()
 				immunity = true
@@ -228,8 +231,10 @@ func _on_game_space_body_exited(body: Node2D) -> void:
 func _on_character_body_2d_get_hit() -> void:
 	if immunity == false:
 		if character.take_damage() == 1:
-			stopSounds()
-			GameManager.goToLooseScreen()
+			if not alreadyLost:
+				alreadyLost = true
+				stopSounds()
+				GameManager.goToLooseScreen()
 		else:
 			character.start_blink_effect()
 			immunity = true

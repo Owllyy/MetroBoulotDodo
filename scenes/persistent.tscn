@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://drqs50e5wny8e"]
+[gd_scene load_steps=10 format=3 uid="uid://drqs50e5wny8e"]
 
 [ext_resource type="Script" uid="uid://cgdc7cx1ncbge" path="res://scripts/GameManager.gd" id="1_sa783"]
 [ext_resource type="PackedScene" uid="uid://cf7sqmfjnnv4g" path="res://scenes/boulot/boulot.tscn" id="3_7h3h8"]
@@ -8,12 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://gcmy85wqs0x1" path="res://scenes/dodo/dodo.tscn" id="5_emu0y"]
 [ext_resource type="Texture2D" uid="uid://4n0va5p54b0w" path="res://assets/common/dodo_lost.png" id="5_ubqw2"]
 [ext_resource type="Texture2D" uid="uid://buxaeuslh661c" path="res://assets/boulot/boulot_lost.png" id="7_7h3h8"]
+[ext_resource type="PackedScene" uid="uid://cqocxce57mekl" path="res://scenes/common/finalGameLost.tscn" id="9_cwl51"]
 
 [node name="Persistent" type="Node"]
 script = ExtResource("1_sa783")
 stagesPerDay = Array[PackedScene]([ExtResource("3_emu0y"), ExtResource("3_7h3h8"), ExtResource("5_emu0y")])
 stageLostScreen = ExtResource("4_ubqw2")
 stageLostTextures = Array[Texture2D]([ExtResource("4_emu0y"), ExtResource("7_7h3h8"), ExtResource("5_ubqw2")])
+gameLostScreen = ExtResource("9_cwl51")
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
 
